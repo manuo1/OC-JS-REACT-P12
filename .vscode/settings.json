@@ -1,0 +1,35 @@
+{
+  "//": "Active le formatage automatique à l'enregistrement",
+  "editor.formatOnSave": true,
+
+  "//": "ESLint corrigera automatiquement les erreurs et validera JavaScript lors de l'enregistrement",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "eslint.validate": ["javascript"],
+
+  "//": "Définit Prettier comme formateur par défaut pour HTML",
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  "//": "Définit Prettier comme formateur par défaut pour CSS",
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  "//": "Définit Prettier comme formateur par défaut pour SCSS",
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  "//": "Définit Prettier comme formateur par défaut pour JavaScript",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  "//": "Définit Prettier comme formateur par défaut pour react",
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
