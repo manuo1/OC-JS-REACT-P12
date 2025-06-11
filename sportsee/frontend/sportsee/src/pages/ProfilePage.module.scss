@@ -54,9 +54,9 @@
 
 .leftColumn__top {
   height: 53%;
-  background-color: crimson; // TODO REMOVE
   box-shadow: 0px 2px 4px 0px #00000005;
   border-radius: 5px;
+  overflow: hidden;
 }
 
 .leftColumn__bottom {
@@ -73,6 +73,7 @@
   background-color: hotpink; // TODO REMOVE
   box-shadow: 0px 2px 4px 0px #00000005;
   border-radius: 5px;
+  overflow: hidden;
 }
 
 .rightColumn__center {
@@ -87,4 +88,5 @@
   box-shadow: 0px 2px 4px 0px #00000005;
   border-radius: 5px;
   height: 20%;
+  overflow: hidden;
 }

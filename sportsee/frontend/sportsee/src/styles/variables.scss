@@ -2,3 +2,13 @@ $color-primary: #ff0000;
 $color-dark: #020203;
 $color-light: #fbfbfb;
 $color-white: #ffffff;
+
+// BarGraph
+// ⚠️ Some colors are manually set in components/DailyActivityBarChart.jsx
+
+$bargraph-color-red: #e60000;
+$bargraph-color-black: #282d30;
+$bargraph-color-title: #20253a;
+$bargraph-color-legend: #74798c;
+$bargraph-color-axis-label: #9b9eac;
+$bargraph-color-axis: #dedede;

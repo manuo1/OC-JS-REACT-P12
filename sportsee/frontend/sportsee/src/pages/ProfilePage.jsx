@@ -2,16 +2,31 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import userService from "../mocks/userService";
 import styles from "./ProfilePage.module.scss";
+import DailyActivityBarChart from "../components/DailyActivityBarChart";
 
 function ProfilePage() {
   const { id: userId } = useParams();
   const [user, setUser] = useState(null);
+  const [activityData, setActivityData] = useState(null);
 
   useEffect(() => {
-    userService.getUserMainData(parseInt(userId)).then((data) => setUser(data));
+    const fetchData = async () => {
+      try {
+        const [userData, userActivity] = await Promise.all([
+          userService.getUserMainData(parseInt(userId)),
+          userService.getUserActivity(parseInt(userId)),
+        ]);
+        setUser(userData);
+        setActivityData(userActivity);
+      } catch (error) {
+        console.error("Erreur lors du chargement des données:", error);
+      }
+    };
+
+    fetchData();
   }, [userId]);
 
-  if (!user) return <div>Loading...</div>;
+  if (!user || !activityData) return <div>Loading...</div>;
 
   return (
     <div className={styles.container}>
@@ -27,7 +42,9 @@ function ProfilePage() {
 
       <div className={styles.dashboard}>
         <div className={styles.leftColumn}>
-          <div className={styles.leftColumn__top}>leftColumn__top</div>
+          <div className={styles.leftColumn__top}>
+            <DailyActivityBarChart activityData={activityData} />
+          </div>
           <div className={styles.leftColumn__bottom}>
             <div className={styles.leftColumn__bottom__element}>
               leftColumn__bottom__left

@@ -1,0 +1,67 @@
+@use "../styles/variables" as vars;
+
+.container {
+  background-color: vars.$color-light;
+  width: 100%;
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 500;
+  color: vars.$bargraph-color-title;
+  margin: 0;
+}
+
+.legend {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: vars.$bargraph-color-legend;
+}
+
+.legendIconKg {
+  width: 8px;
+  height: 8px;
+  background-color: vars.$bargraph-color-black;
+  border-radius: 50%;
+}
+
+.legendIconCalories {
+  width: 8px;
+  height: 8px;
+  background-color: vars.$bargraph-color-red;
+  border-radius: 50%;
+}
+
+.tooltip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 63px;
+  background-color: vars.$bargraph-color-red;
+  border: none;
+  padding: 10px;
+  min-width: 39px;
+}
+
+.tooltip_data {
+  color: vars.$color-white;
+  font-size: 14px;
+}
