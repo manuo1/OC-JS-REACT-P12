@@ -4,7 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 91px;
+  height: clamp(81px, 56.3846px + 2.4038vw, 91px);
   width: 100%;
 
   background-color: vars.$color-dark;
@@ -24,7 +24,7 @@
   display: flex;
   justify-content: space-between;
   padding-right: 80px;
-  gap: 210px;
+  gap: clamp(6.25rem, -10.6731rem + 26.4423vw, 13.125rem);
 }
 
 .link {

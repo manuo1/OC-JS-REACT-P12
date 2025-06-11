@@ -11,16 +11,16 @@ const Sidebar = () => {
   return (
     <aside className={styles.container}>
       <nav className={styles.nav}>
-        <Link to="/yoga">
+        <Link to="/yoga" className={styles.link}>
           <img src={yogaIcon} alt="Yoga" />
         </Link>
-        <Link to="/natation">
+        <Link to="/natation" className={styles.link}>
           <img src={swimmingIcon} alt="Natation" />
         </Link>
-        <Link to="/cyclisme">
+        <Link to="/cyclisme" className={styles.link}>
           <img src={cyclingIcon} alt="Cyclisme" />
         </Link>
-        <Link to="/musculation">
+        <Link to="/musculation" className={styles.link}>
           <img src={weightIcon} alt="Musculation" />
         </Link>
       </nav>

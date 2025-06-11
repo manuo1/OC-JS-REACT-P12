@@ -3,7 +3,10 @@
 .container {
   display: flex;
   flex-direction: column;
-  padding: 51px 108px;
+  padding: clamp(20px, -56.3077px + 7.4519vw, 51px)
+    clamp(40px, -83.0769px + 12.0192vw, 90px)
+    clamp(20px, -56.3077px + 7.4519vw, 51px)
+    clamp(50px, -92.7692px + 13.9423vw, 108px);
   width: 100%;
   height: 100%;
 }
@@ -31,9 +34,9 @@
   justify-content: space-between;
   width: 100%;
   height: 100%;
-  margin-top: 78px;
+  margin-top: clamp(40px, -53.5385px + 9.1346vw, 78px);
   max-height: 615px;
-  gap: 20px;
+  gap: 25px;
 }
 
 .leftColumn {
@@ -45,19 +48,15 @@
 }
 
 .rightColumn {
-  display: flex;
-  flex-direction: column;
-
   width: 23%;
   height: 100%;
-  // TODO REMOVE
-  background-color: chartreuse;
 }
 
 .leftColumn__top {
   height: 53%;
-  // TODO REMOVE
-  background-color: crimson;
+  background-color: crimson; // TODO REMOVE
+  box-shadow: 0px 2px 4px 0px #00000005;
+  border-radius: 5px;
 }
 
 .leftColumn__bottom {
@@ -68,10 +67,24 @@
   flex: 1;
 }
 
-.leftColumn__bottom__left,
-.leftColumn__bottom__center,
-.leftColumn__bottom__right {
+.leftColumn__bottom__element {
   width: 100%;
-  // TODO REMOVE
-  background-color: hotpink;
+  height: auto;
+  background-color: hotpink; // TODO REMOVE
+  box-shadow: 0px 2px 4px 0px #00000005;
+  border-radius: 5px;
+}
+
+.rightColumn__center {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.rightColumn__center__element {
+  background-color: hotpink; // TODO REMOVE
+  box-shadow: 0px 2px 4px 0px #00000005;
+  border-radius: 5px;
+  height: 20%;
 }

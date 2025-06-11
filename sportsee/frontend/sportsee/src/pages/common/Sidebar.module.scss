@@ -4,8 +4,9 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 117px;
+  width: clamp(70px, -45.6923px + 11.2981vw, 117px);
   background-color: vars.$color-dark;
+  height: 100%;
 }
 
 .nav {
@@ -13,7 +14,17 @@
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  margin-top: 250px;
+  margin-top: clamp(6.25rem, -16.8269rem + 36.0577vw, 15.625rem);
+
+  .link {
+    width: 54%;
+    min-width: 50px;
+
+    img {
+      height: auto;
+      width: 100%;
+    }
+  }
 }
 
 .copyright {

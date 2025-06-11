@@ -29,20 +29,33 @@ function ProfilePage() {
         <div className={styles.leftColumn}>
           <div className={styles.leftColumn__top}>leftColumn__top</div>
           <div className={styles.leftColumn__bottom}>
-            <div className={styles.leftColumn__bottom__left}>
+            <div className={styles.leftColumn__bottom__element}>
               leftColumn__bottom__left
-            </div>{" "}
-            <div className={styles.leftColumn__bottom__center}>
+            </div>
+            <div className={styles.leftColumn__bottom__element}>
               leftColumn__bottom__center
-            </div>{" "}
-            <div className={styles.leftColumn__bottom__right}>
+            </div>
+            <div className={styles.leftColumn__bottom__element}>
               leftColumn__bottom__right
             </div>
           </div>
         </div>
 
         <div className={styles.rightColumn}>
-          <div className={styles.rightColumn__center}>rightColumn__center</div>
+          <div className={styles.rightColumn__center}>
+            <div className={styles.rightColumn__center__element}>
+              leftColumn__bottom__left
+            </div>
+            <div className={styles.rightColumn__center__element}>
+              leftColumn__bottom__center
+            </div>
+            <div className={styles.rightColumn__center__element}>
+              leftColumn__bottom__right
+            </div>
+            <div className={styles.rightColumn__center__element}>
+              leftColumn__bottom__right
+            </div>
+          </div>
         </div>
       </div>
     </div>
