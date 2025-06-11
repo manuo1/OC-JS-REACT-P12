@@ -1,7 +1,38 @@
+@use "../../styles/variables.scss" as vars;
+
 .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   height: 91px;
   width: 100%;
 
-  // TODO REMOVE
-  background-color: brown;
+  background-color: vars.$color-dark;
+}
+
+.logo {
+  padding-left: 28px;
+  height: 61px;
+
+  img {
+    height: 100%;
+    width: auto;
+  }
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 80px;
+  gap: 210px;
+}
+
+.link {
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: 500;
+  color: vars.$color-white;
+  background: none;
+  border: none;
+  outline: none;
 }
