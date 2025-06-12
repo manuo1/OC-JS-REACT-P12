@@ -16,7 +16,7 @@ const userService = {
     const data = getMockedData("users", userId);
     return {
       ...data,
-      todayScore: data.todayScore ?? data.score,
+      score: data.todayScore ?? data.score,
     };
   },
 
