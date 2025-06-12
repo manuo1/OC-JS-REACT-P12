@@ -40,20 +40,14 @@ function UserPerformanceRadarChart({ performanceData }) {
     <div className={styles.performanceChart}>
       <ResponsiveContainer width="100%" height="100%">
         <RadarChart data={formattedData} outerRadius="71%">
-          <PolarGrid stroke="#FFFFFF" radialLines={false} />
+          <PolarGrid className={styles.polarGrid} radialLines={false} />
           <PolarAngleAxis
             dataKey="kindLabel"
-            stroke="#FFFFFF"
             tickLine={false}
-            className={styles.angleAxisTick}
+            className={styles.polarAngleAxis}
           />
           <PolarRadiusAxis tick={false} axisLine={false} />
-          <Radar
-            dataKey="value"
-            stroke="#FF0101B2"
-            fill="#FF0101B2"
-            fillOpacity={0.7}
-          />
+          <Radar dataKey="value" className={styles.radar} />
         </RadarChart>
       </ResponsiveContainer>
     </div>

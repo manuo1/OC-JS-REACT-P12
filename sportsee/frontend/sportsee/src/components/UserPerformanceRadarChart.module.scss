@@ -5,6 +5,19 @@
   height: 100%;
 }
 
-.angleAxisTick {
+.polarAngleAxis {
   font-size: clamp(10px, 5.0769px + 0.4808vw, 12px);
+  text {
+    fill: vars.$color-white;
+  }
+}
+
+.radar {
+  stroke: vars.$graph-color-radar;
+  fill: vars.$graph-color-radar;
+  fill-opacity: 0.7;
+}
+
+.polarGrid {
+  stroke: vars.$color-white;
 }

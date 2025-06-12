@@ -24,7 +24,7 @@ function UserScoreRadialChart({ score }) {
           <RadialBar
             dataKey="value"
             cornerRadius={10}
-            fill="#FF0000"
+            className={styles.scoreFill}
             clockWise
           />
         </RadialBarChart>
