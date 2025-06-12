@@ -1,7 +1,7 @@
 import styles from "./HomePage.module.scss";
 
 const HomePage = () => {
-  return <div className={styles.container}>Temporary HomePage</div>;
+  return <h1 className={styles.container}>Temporary HomePage</h1>;
 };
 
 export default HomePage;
