@@ -1,0 +1,52 @@
+@use "../styles/variables" as vars;
+
+.nutritionCard {
+  background-color: vars.$color-light;
+  border-radius: 5px;
+  padding: 20px 35px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.iconContainer {
+  width: 60px;
+  height: 60px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: contain;
+}
+
+.dataContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.value {
+  font-weight: 700;
+  font-size: 20px;
+  color: #282d30;
+  line-height: 1.2;
+}
+
+.label {
+  font-weight: 500;
+  font-size: 14px;
+  color: #74798c;
+  line-height: 1.2;
+}

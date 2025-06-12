@@ -6,6 +6,7 @@ import DailyActivityBarChart from "../components/DailyActivityBarChart";
 import AverageSessionLineChart from "../components/AverageSessionLineChart";
 import UserPerformanceRadarChart from "../components/UserPerformanceRadarChart";
 import UserScoreRadialChart from "../components/UserScoreRadialChart";
+import NutritionCard from "../components/NutritionCard";
 
 function ProfilePage() {
   const { id: userId } = useParams();
@@ -72,16 +73,28 @@ function ProfilePage() {
         <div className={styles.rightColumn}>
           <div className={styles.rightColumn__center}>
             <div className={styles.rightColumn__center__element}>
-              leftColumn__bottom__left
+              <NutritionCard
+                type="calorieCount"
+                value={user.keyData.calorieCount}
+              />
             </div>
             <div className={styles.rightColumn__center__element}>
-              leftColumn__bottom__center
+              <NutritionCard
+                type="proteinCount"
+                value={user.keyData.proteinCount}
+              />
             </div>
             <div className={styles.rightColumn__center__element}>
-              leftColumn__bottom__right
+              <NutritionCard
+                type="carbohydrateCount"
+                value={user.keyData.carbohydrateCount}
+              />
             </div>
             <div className={styles.rightColumn__center__element}>
-              leftColumn__bottom__right
+              <NutritionCard
+                type="lipidCount"
+                value={user.keyData.lipidCount}
+              />
             </div>
           </div>
         </div>
