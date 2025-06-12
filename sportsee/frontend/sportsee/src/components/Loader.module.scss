@@ -1,0 +1,24 @@
+@use "../styles/variables" as vars;
+
+.loaderContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.spinner {
+  width: 80px;
+  height: 80px;
+  border: 10px solid vars.$color-dark;
+  border-top: 10px solid vars.$color-primary;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,5 +1,9 @@
 import { mockData } from "./mockData";
 
+function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 function getMockedData(key, userId) {
   const sectionData = mockData[key];
   const userData = sectionData?.[userId];
@@ -13,6 +17,7 @@ function getMockedData(key, userId) {
 
 const userService = {
   getUserMainData: async (userId) => {
+    await delay(500);
     const data = getMockedData("users", userId);
     return {
       ...data,

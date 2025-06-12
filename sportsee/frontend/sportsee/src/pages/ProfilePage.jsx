@@ -1,12 +1,14 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import userService from "../mocks/userService";
+//import userService from "../services/userService";
 import styles from "./ProfilePage.module.scss";
 import DailyActivityBarChart from "../components/DailyActivityBarChart";
 import AverageSessionLineChart from "../components/AverageSessionLineChart";
 import UserPerformanceRadarChart from "../components/UserPerformanceRadarChart";
 import UserScoreRadialChart from "../components/UserScoreRadialChart";
 import NutritionCard from "../components/NutritionCard";
+import Loader from "../components/Loader";
 
 function ProfilePage() {
   const { id: userId } = useParams();
@@ -38,7 +40,7 @@ function ProfilePage() {
   }, [userId]);
 
   if (!user || !activityData || !averageSessionData || !performanceData)
-    return <div>Loading...</div>;
+    return <Loader />;
 
   return (
     <div className={styles.container}>
