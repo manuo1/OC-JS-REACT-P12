@@ -75,6 +75,7 @@ function DailyActivityBarChart({ activityData }) {
             tickLine={false}
             tick={{ fontSize: 14, fill: "#9B9EAC" }}
             domain={["dataMin - 1", "dataMax + 1"]}
+            allowDecimals={false}
           />
           <YAxis
             yAxisId="calories"
@@ -82,6 +83,7 @@ function DailyActivityBarChart({ activityData }) {
             axisLine={false}
             tickLine={false}
             tick={{ fontSize: 14, fill: "#9B9EAC" }}
+            allowDecimals={false}
             hide
           />
           <Tooltip content={<CustomTooltip />} />
