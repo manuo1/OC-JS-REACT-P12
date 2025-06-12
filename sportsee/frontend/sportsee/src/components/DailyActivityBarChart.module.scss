@@ -16,7 +16,7 @@
 .title {
   font-size: 15px;
   font-weight: 500;
-  color: vars.$bargraph-color-title;
+  color: vars.$graph-color-title;
   margin: 0;
 }
 
@@ -31,20 +31,20 @@
   align-items: center;
   gap: 10px;
   font-size: 14px;
-  color: vars.$bargraph-color-legend;
+  color: vars.$graph-color-legend;
 }
 
 .legendIconKg {
   width: 8px;
   height: 8px;
-  background-color: vars.$bargraph-color-black;
+  background-color: vars.$graph-color-black;
   border-radius: 50%;
 }
 
 .legendIconCalories {
   width: 8px;
   height: 8px;
-  background-color: vars.$bargraph-color-red;
+  background-color: vars.$graph-color-red;
   border-radius: 50%;
 }
 
@@ -55,7 +55,7 @@
   justify-content: space-between;
   gap: 8px;
   min-height: 63px;
-  background-color: vars.$bargraph-color-red;
+  background-color: vars.$graph-color-red;
   border: none;
   padding: 10px;
   min-width: 39px;
