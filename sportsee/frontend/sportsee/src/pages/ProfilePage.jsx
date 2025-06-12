@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import userService from "../mocks/userService";
 //import userService from "../services/userService";
@@ -11,6 +11,7 @@ import NutritionCard from "../components/NutritionCard";
 import Loader from "../components/Loader";
 
 function ProfilePage() {
+  const navigate = useNavigate();
   const { id: userId } = useParams();
   const [user, setUser] = useState(null);
   const [activityData, setActivityData] = useState(null);
@@ -33,11 +34,12 @@ function ProfilePage() {
         setPerformanceData(userPerformance);
       } catch (error) {
         console.error("Erreur lors du chargement des données:", error);
+        navigate("/404");
       }
     };
 
     fetchData();
-  }, [userId]);
+  }, [userId, navigate]);
 
   if (!user || !activityData || !averageSessionData || !performanceData)
     return <Loader />;
