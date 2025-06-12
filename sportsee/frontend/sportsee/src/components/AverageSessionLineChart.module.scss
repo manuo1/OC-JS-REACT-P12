@@ -1,0 +1,26 @@
+@use "../styles/variables" as vars;
+
+.averageSessionChart {
+  background-color: vars.$color-primary;
+  border-radius: 5px;
+  position: relative;
+  height: 100%;
+
+  h2 {
+    position: absolute;
+    top: 35px;
+    left: 35px;
+    font-size: 15px;
+    font-weight: 500;
+    color: vars.$color-white;
+    max-width: 150px;
+    line-height: 22px;
+  }
+
+  .sessionTooltip {
+    background: #fff;
+    color: vars.$color-black;
+    font-size: 10px;
+    padding: 5px 10px;
+  }
+}

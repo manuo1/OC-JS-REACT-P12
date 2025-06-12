@@ -3,21 +3,27 @@ import { useEffect, useState } from "react";
 import userService from "../mocks/userService";
 import styles from "./ProfilePage.module.scss";
 import DailyActivityBarChart from "../components/DailyActivityBarChart";
+import AverageSessionLineChart from "../components/AverageSessionLineChart";
 
 function ProfilePage() {
   const { id: userId } = useParams();
   const [user, setUser] = useState(null);
   const [activityData, setActivityData] = useState(null);
+  const [averageSessionData, setAverageSessionData] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [userData, userActivity] = await Promise.all([
-          userService.getUserMainData(parseInt(userId)),
-          userService.getUserActivity(parseInt(userId)),
-        ]);
+        const [userData, userActivity, userAverageSessions] = await Promise.all(
+          [
+            userService.getUserMainData(parseInt(userId)),
+            userService.getUserActivity(parseInt(userId)),
+            userService.getUserAverageSessions(parseInt(userId)),
+          ]
+        );
         setUser(userData);
         setActivityData(userActivity);
+        setAverageSessionData(userAverageSessions);
       } catch (error) {
         console.error("Erreur lors du chargement des données:", error);
       }
@@ -47,7 +53,7 @@ function ProfilePage() {
           </div>
           <div className={styles.leftColumn__bottom}>
             <div className={styles.leftColumn__bottom__element}>
-              leftColumn__bottom__left
+              <AverageSessionLineChart sessionData={averageSessionData} />
             </div>
             <div className={styles.leftColumn__bottom__element}>
               leftColumn__bottom__center
