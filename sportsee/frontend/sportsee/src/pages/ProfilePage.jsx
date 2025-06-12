@@ -4,26 +4,29 @@ import userService from "../mocks/userService";
 import styles from "./ProfilePage.module.scss";
 import DailyActivityBarChart from "../components/DailyActivityBarChart";
 import AverageSessionLineChart from "../components/AverageSessionLineChart";
+import UserPerformanceRadarChart from "../components/UserPerformanceRadarChart";
 
 function ProfilePage() {
   const { id: userId } = useParams();
   const [user, setUser] = useState(null);
   const [activityData, setActivityData] = useState(null);
   const [averageSessionData, setAverageSessionData] = useState(null);
+  const [performanceData, setPerformanceData] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [userData, userActivity, userAverageSessions] = await Promise.all(
-          [
+        const [userData, userActivity, userAverageSessions, userPerformance] =
+          await Promise.all([
             userService.getUserMainData(parseInt(userId)),
             userService.getUserActivity(parseInt(userId)),
             userService.getUserAverageSessions(parseInt(userId)),
-          ]
-        );
+            userService.getUserPerformance(parseInt(userId)),
+          ]);
         setUser(userData);
         setActivityData(userActivity);
         setAverageSessionData(userAverageSessions);
+        setPerformanceData(userPerformance);
       } catch (error) {
         console.error("Erreur lors du chargement des données:", error);
       }
@@ -32,7 +35,8 @@ function ProfilePage() {
     fetchData();
   }, [userId]);
 
-  if (!user || !activityData) return <div>Loading...</div>;
+  if (!user || !activityData || !averageSessionData || !performanceData)
+    return <div>Loading...</div>;
 
   return (
     <div className={styles.container}>
@@ -56,7 +60,7 @@ function ProfilePage() {
               <AverageSessionLineChart sessionData={averageSessionData} />
             </div>
             <div className={styles.leftColumn__bottom__element}>
-              leftColumn__bottom__center
+              <UserPerformanceRadarChart performanceData={performanceData} />
             </div>
             <div className={styles.leftColumn__bottom__element}>
               leftColumn__bottom__right

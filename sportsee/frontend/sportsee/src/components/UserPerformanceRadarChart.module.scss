@@ -1,0 +1,10 @@
+@use "../styles/variables" as vars;
+
+.performanceChart {
+  background-color: vars.$graph-color-black;
+  height: 100%;
+}
+
+.angleAxisTick {
+  font-size: clamp(10px, 5.0769px + 0.4808vw, 12px);
+}
