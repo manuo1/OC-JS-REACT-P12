@@ -1,0 +1,42 @@
+@use "../styles/variables" as vars;
+
+.scoreChart {
+  background-color: vars.$color-light;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.chartTitle {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  font-weight: 500;
+  font-size: 15px;
+  color: vars.$graph-color-title;
+  z-index: 10;
+}
+
+.scoreDisplay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10;
+  width: 40%;
+}
+
+.scoreValue {
+  font-weight: 700;
+  font-size: 26px;
+  color: vars.$graph-color-black;
+  line-height: 1;
+}
+
+.scoreLabel {
+  font-weight: 500;
+  font-size: 16px;
+  color: vars.$graph-color-legend;
+  margin-top: 5px;
+}

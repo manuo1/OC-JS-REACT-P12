@@ -5,6 +5,7 @@ import styles from "./ProfilePage.module.scss";
 import DailyActivityBarChart from "../components/DailyActivityBarChart";
 import AverageSessionLineChart from "../components/AverageSessionLineChart";
 import UserPerformanceRadarChart from "../components/UserPerformanceRadarChart";
+import UserScoreRadialChart from "../components/UserScoreRadialChart";
 
 function ProfilePage() {
   const { id: userId } = useParams();
@@ -63,7 +64,7 @@ function ProfilePage() {
               <UserPerformanceRadarChart performanceData={performanceData} />
             </div>
             <div className={styles.leftColumn__bottom__element}>
-              leftColumn__bottom__right
+              <UserScoreRadialChart score={user.score} />
             </div>
           </div>
         </div>
