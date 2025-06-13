@@ -1,28 +1,38 @@
 /**
- * Fetches JSON data from the given URL.
+ * Fetches JSON data from the given URL and handles both HTTP and network errors.
  *
- * Performs a fetch request and returns the parsed JSON response.
- * Throws an error if the HTTP response status is not OK (status 200-299),
- * or if the fetch itself fails.
+ * - Throws an error with a `status` property:
+ *   - `res.status` for HTTP errors (like 404 or 500)
+ *   - `0` for network errors or CORS failures
+ *
+ * - Logs detailed error messages in the console for debugging.
  *
  * @async
  * @function fetchJson
  * @param {string} url - The URL to fetch JSON data from.
- * @returns {Promise<any>} A promise that resolves to the parsed JSON data.
- * @throws {Error} Throws if the HTTP status is not ok or fetch fails.
+ * @returns {Promise<Object>} The parsed JSON response.
+ * @throws {Error} If the request fails or the server responds with a non-2xx status.
  */
+
 export async function fetchJson(url) {
   try {
     const res = await fetch(url);
 
     if (!res.ok) {
-      throw new Error(`HTTP error! Status: ${res.status}`);
+      const err = new Error(`HTTP error! Status: ${res.status}`);
+      err.status = res.status;
+      console.error(
+        `HTTP error while fetching ${url}: ${res.status} ${res.statusText}`
+      );
+      throw err;
     }
 
-    const data = await res.json();
-    return data;
+    return await res.json();
   } catch (err) {
-    console.error(`Fetch failed for ${url}`, err);
+    if (err.status === undefined) {
+      err.status = 0;
+      console.error(`Network error or no response from ${url}`);
+    }
     throw err;
   }
 }

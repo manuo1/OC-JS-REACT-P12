@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 //import userService from "../mocks/userService";
 import userService from "../services/userService";
@@ -11,21 +11,22 @@ import NutritionCard from "../components/NutritionCard";
 import Loader from "../components/Loader";
 
 /**
- * ProfilePage component fetches and displays user data including activity,
- * average sessions, performance, and key nutritional data.
+ * ProfilePage component.
  *
- * It handles loading state and redirects to 404 page on fetch error.
+ * Displays the user's dashboard with various data visualizations
+ * such as activity charts, session duration, performance, score,
+ * and nutrition cards. Handles data fetching and error states.
  *
  * @component
- * @returns {JSX.Element} Profile page with charts and nutrition cards
+ * @returns {JSX.Element} Rendered profile page or loader or error message
  */
 function ProfilePage() {
-  const navigate = useNavigate();
   const { id: userId } = useParams();
   const [user, setUser] = useState(null);
   const [activityData, setActivityData] = useState(null);
   const [averageSessionData, setAverageSessionData] = useState(null);
   const [performanceData, setPerformanceData] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   // Fetch user data on mount or when userId changes, redirect to 404 if fetch fails
   useEffect(() => {
@@ -42,14 +43,23 @@ function ProfilePage() {
         setActivityData(userActivity);
         setAverageSessionData(userAverageSessions);
         setPerformanceData(userPerformance);
-      } catch (error) {
-        console.error("Erreur lors du chargement des données:", error);
-        navigate("/404");
+      } catch (err) {
+        if (err.status === 404) {
+          setErrorMessage("Utilisateur inconnu");
+        } else {
+          setErrorMessage(
+            "Une erreur est survenue lors du chargement des données."
+          );
+        }
       }
     };
 
     fetchData();
-  }, [userId, navigate]);
+  }, [userId]);
+
+  if (errorMessage) {
+    return <div className={styles.error}>{errorMessage}</div>;
+  }
 
   if (!user || !activityData || !averageSessionData || !performanceData)
     return <Loader />;

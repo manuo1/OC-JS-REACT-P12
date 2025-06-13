@@ -90,3 +90,17 @@
   height: 20%;
   overflow: hidden;
 }
+
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: vars.$color-primary;
+  background-color: vars.$color-light;
+  border: 1px solid vars.$color-primary;
+  padding: 100px;
+  margin: 100px auto;
+  border-radius: 8px;
+  font-weight: bold;
+  height: 200px;
+}
