@@ -49,8 +49,6 @@ Seules ces routes fonctionnent actuellement pour simuler différents utilisateur
 
 ## Architecture du projet
 
-Voici une vue simplifiée de l’organisation des dossiers et fichiers principaux du projet :
-
 ```
 .
 ├── project-meta
@@ -90,3 +88,17 @@ Voici une vue simplifiée de l’organisation des dossiers et fichiers principau
 - `sportsee/backend` contient le serveur Node.js avec l’API REST.
 - `sportsee/frontend` contient la partie client React.
 
+
+## Documentation avec JSDoc
+
+Ce projet utilise JSDoc pour générer automatiquement la documentation à partir des commentaires présents dans le code source JavaScript.
+
+### mettre à jour la documentation
+
+```bash
+cd sportsee/frontend/sportsee
+npm run docs
+```
+
+La documentation actuelle est déployée sur Github Pages:
+[Documentation](https://manuo1.github.io/OC-JS-REACT-P12/)

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: pages/ProfilePage.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: pages/ProfilePage.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useParams, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+//import userService from "../mocks/userService";
+import userService from "../services/userService";
+import styles from "./ProfilePage.module.scss";
+import DailyActivityBarChart from "../components/DailyActivityBarChart";
+import AverageSessionLineChart from "../components/AverageSessionLineChart";
+import UserPerformanceRadarChart from "../components/UserPerformanceRadarChart";
+import UserScoreRadialChart from "../components/UserScoreRadialChart";
+import NutritionCard from "../components/NutritionCard";
+import Loader from "../components/Loader";
+
+/**
+ * ProfilePage component fetches and displays user data including activity,
+ * average sessions, performance, and key nutritional data.
+ *
+ * It handles loading state and redirects to 404 page on fetch error.
+ *
+ * @component
+ * @returns {JSX.Element} Profile page with charts and nutrition cards
+ */
+function ProfilePage() {
+  const navigate = useNavigate();
+  const { id: userId } = useParams();
+  const [user, setUser] = useState(null);
+  const [activityData, setActivityData] = useState(null);
+  const [averageSessionData, setAverageSessionData] = useState(null);
+  const [performanceData, setPerformanceData] = useState(null);
+
+  // Fetch user data on mount or when userId changes, redirect to 404 if fetch fails
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [userData, userActivity, userAverageSessions, userPerformance] =
+          await Promise.all([
+            userService.getUserMainData(parseInt(userId)),
+            userService.getUserActivity(parseInt(userId)),
+            userService.getUserAverageSessions(parseInt(userId)),
+            userService.getUserPerformance(parseInt(userId)),
+          ]);
+        setUser(userData);
+        setActivityData(userActivity);
+        setAverageSessionData(userAverageSessions);
+        setPerformanceData(userPerformance);
+      } catch (error) {
+        console.error("Erreur lors du chargement des données:", error);
+        navigate("/404");
+      }
+    };
+
+    fetchData();
+  }, [userId, navigate]);
+
+  if (!user || !activityData || !averageSessionData || !performanceData)
+    return &lt;Loader />;
+
+  return (
+    &lt;div className={styles.container}>
+      &lt;div className={styles.header}>
+        &lt;h1 className={styles.title}>
+          Bonjour{" "}
+          &lt;span className={styles.firstname}>{user.userInfos.firstName}&lt;/span>
+        &lt;/h1>
+        &lt;p className={styles.encouragement}>
+          Félicitation ! Vous avez explosé vos objectifs hier 👏
+        &lt;/p>
+      &lt;/div>
+
+      &lt;div className={styles.dashboard}>
+        &lt;div className={styles.leftColumn}>
+          &lt;div className={styles.leftColumn__top}>
+            &lt;DailyActivityBarChart activityData={activityData} />
+          &lt;/div>
+          &lt;div className={styles.leftColumn__bottom}>
+            &lt;div className={styles.leftColumn__bottom__element}>
+              &lt;AverageSessionLineChart sessionData={averageSessionData} />
+            &lt;/div>
+            &lt;div className={styles.leftColumn__bottom__element}>
+              &lt;UserPerformanceRadarChart performanceData={performanceData} />
+            &lt;/div>
+            &lt;div className={styles.leftColumn__bottom__element}>
+              &lt;UserScoreRadialChart score={user.score} />
+            &lt;/div>
+          &lt;/div>
+        &lt;/div>
+
+        &lt;div className={styles.rightColumn}>
+          &lt;div className={styles.rightColumn__center}>
+            &lt;div className={styles.rightColumn__center__element}>
+              &lt;NutritionCard
+                type="calorieCount"
+                value={user.keyData.calorieCount}
+              />
+            &lt;/div>
+            &lt;div className={styles.rightColumn__center__element}>
+              &lt;NutritionCard
+                type="proteinCount"
+                value={user.keyData.proteinCount}
+              />
+            &lt;/div>
+            &lt;div className={styles.rightColumn__center__element}>
+              &lt;NutritionCard
+                type="carbohydrateCount"
+                value={user.keyData.carbohydrateCount}
+              />
+            &lt;/div>
+            &lt;div className={styles.rightColumn__center__element}>
+              &lt;NutritionCard
+                type="lipidCount"
+                value={user.keyData.lipidCount}
+              />
+            &lt;/div>
+          &lt;/div>
+        &lt;/div>
+      &lt;/div>
+    &lt;/div>
+  );
+}
+
+export default ProfilePage;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#CustomCursor">CustomCursor</a></li><li><a href="global.html#CustomTooltip">CustomTooltip</a></li><li><a href="global.html#DailyActivityBarChart">DailyActivityBarChart</a></li><li><a href="global.html#Error404">Error404</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#HomePage">HomePage</a></li><li><a href="global.html#Loader">Loader</a></li><li><a href="global.html#NutritionCard">NutritionCard</a></li><li><a href="global.html#ProfilePage">ProfilePage</a></li><li><a href="global.html#Router">Router</a></li><li><a href="global.html#Sidebar">Sidebar</a></li><li><a href="global.html#UserPerformanceRadarChart">UserPerformanceRadarChart</a></li><li><a href="global.html#UserScoreRadialChart">UserScoreRadialChart</a></li><li><a href="global.html#delay">delay</a></li><li><a href="global.html#fetchJson">fetchJson</a></li><li><a href="global.html#getMockedData">getMockedData</a></li><li><a href="global.html#mockData">mockData</a></li><li><a href="global.html#userService">userService</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Fri Jun 13 2025 12:36:39 GMT+0200 (heure d’été d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

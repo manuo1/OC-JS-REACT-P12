@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/AverageSessionLineChart.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/AverageSessionLineChart.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * AverageSessionLineChart.jsx
+ *
+ * Displays the average duration of user sessions over a week as a line chart.
+ */
+
+import {
+  LineChart,
+  Line,
+  XAxis,
+  Tooltip,
+  ResponsiveContainer,
+  Rectangle,
+} from "recharts";
+import PropTypes from "prop-types";
+import styles from "./AverageSessionLineChart.module.scss";
+
+const dayLabels = ["L", "M", "M", "J", "V", "S", "D"];
+
+/**
+ * Custom tooltip component for the session chart.
+ *
+ * @param {Object} props
+ * @param {boolean} props.active - Whether the tooltip is active.
+ * @param {Array} props.payload - Data payload from Recharts.
+ * @returns {JSX.Element|null} Tooltip content or null.
+ */
+function CustomTooltip({ active, payload }) {
+  if (active &amp;&amp; payload &amp;&amp; payload.length) {
+    return &lt;div className={styles.sessionTooltip}>{payload[0].value} min&lt;/div>;
+  }
+  return null;
+}
+
+/**
+ * Custom cursor component that renders a rectangle overlay on hover.
+ *
+ * @param {Object} props
+ * @param {Array} props.points - The hover point coordinates.
+ * @param {number} props.width - The width of the cursor rectangle.
+ * @returns {JSX.Element} Rectangle overlay.
+ */
+function CustomCursor({ points, width }) {
+  return (
+    &lt;Rectangle
+      fill="rgba(0, 0, 0, 0.1)"
+      x={points[0].x}
+      y={0}
+      width={width}
+      height={400}
+    />
+  );
+}
+
+/**
+ * Renders the average session line chart.
+ *
+ * @component
+ * @param {Object} props
+ * @param {Object} props.sessionData - Object containing session data.
+ * @param {Array&lt;{ day: number, sessionLength: number }>} props.sessionData.sessions - List of session entries.
+ * @returns {JSX.Element} The rendered line chart component.
+ */
+export default function AverageSessionLineChart({ sessionData }) {
+  const formattedData = sessionData.sessions.map((session) => ({
+    day: dayLabels[session.day - 1],
+    sessionLength: session.sessionLength,
+  }));
+
+  return (
+    &lt;div className={styles.averageSessionChart}>
+      &lt;h2>Durée moyenne des sessions&lt;/h2>
+      &lt;ResponsiveContainer width="100%" height="100%">
+        &lt;LineChart
+          data={formattedData}
+          margin={{ top: 60, right: 0, left: 0, bottom: 13 }}
+        >
+          &lt;defs>
+            &lt;linearGradient id="lineGradient" x1="1" y1="0" x2="0" y2="0">
+              &lt;stop offset="0%" stopColor="rgba(255,255,255,1)" />
+              &lt;stop offset="80%" stopColor="rgba(255,255,255,0.4)" />
+            &lt;/linearGradient>
+          &lt;/defs>
+          &lt;XAxis
+            dataKey="day"
+            axisLine={false}
+            tickLine={false}
+            tick={{ fill: "#ffffffa0", fontSize: 12 }}
+            padding={{ left: 10, right: 10 }}
+          />
+          &lt;Tooltip
+            content={&lt;CustomTooltip />}
+            cursor={&lt;CustomCursor width={400} />}
+          />
+          &lt;Line
+            type="natural"
+            dataKey="sessionLength"
+            stroke="url(#lineGradient)"
+            strokeWidth={2}
+            dot={false}
+            activeDot={{
+              r: 2.5,
+              stroke: "#FFF",
+              strokeWidth: 10,
+              fill: "#FFF",
+            }}
+          />
+        &lt;/LineChart>
+      &lt;/ResponsiveContainer>
+    &lt;/div>
+  );
+}
+
+AverageSessionLineChart.propTypes = {
+  sessionData: PropTypes.shape({
+    sessions: PropTypes.arrayOf(
+      PropTypes.shape({
+        day: PropTypes.number.isRequired,
+        sessionLength: PropTypes.number.isRequired,
+      })
+    ).isRequired,
+  }).isRequired,
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#CustomCursor">CustomCursor</a></li><li><a href="global.html#CustomTooltip">CustomTooltip</a></li><li><a href="global.html#DailyActivityBarChart">DailyActivityBarChart</a></li><li><a href="global.html#Error404">Error404</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#HomePage">HomePage</a></li><li><a href="global.html#Loader">Loader</a></li><li><a href="global.html#NutritionCard">NutritionCard</a></li><li><a href="global.html#ProfilePage">ProfilePage</a></li><li><a href="global.html#Router">Router</a></li><li><a href="global.html#Sidebar">Sidebar</a></li><li><a href="global.html#UserPerformanceRadarChart">UserPerformanceRadarChart</a></li><li><a href="global.html#UserScoreRadialChart">UserScoreRadialChart</a></li><li><a href="global.html#delay">delay</a></li><li><a href="global.html#fetchJson">fetchJson</a></li><li><a href="global.html#getMockedData">getMockedData</a></li><li><a href="global.html#mockData">mockData</a></li><li><a href="global.html#userService">userService</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Fri Jun 13 2025 12:36:39 GMT+0200 (heure d’été d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
