@@ -3,6 +3,12 @@ import { Link } from "react-router-dom";
 import styles from "./Header.module.scss";
 import logo from "../../assets/sportsee_logo.png";
 
+/**
+ * Header component displaying the logo and main navigation links.
+ *
+ * @component
+ * @returns {JSX.Element} The header with navigation
+ */
 const Header = () => {
   return (
     <header className={styles.container}>

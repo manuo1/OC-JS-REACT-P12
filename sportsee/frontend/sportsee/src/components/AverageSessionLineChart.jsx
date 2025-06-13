@@ -1,3 +1,9 @@
+/**
+ * AverageSessionLineChart.jsx
+ *
+ * Displays the average duration of user sessions over a week as a line chart.
+ */
+
 import {
   LineChart,
   Line,
@@ -11,6 +17,14 @@ import styles from "./AverageSessionLineChart.module.scss";
 
 const dayLabels = ["L", "M", "M", "J", "V", "S", "D"];
 
+/**
+ * Custom tooltip component for the session chart.
+ *
+ * @param {Object} props
+ * @param {boolean} props.active - Whether the tooltip is active.
+ * @param {Array} props.payload - Data payload from Recharts.
+ * @returns {JSX.Element|null} Tooltip content or null.
+ */
 function CustomTooltip({ active, payload }) {
   if (active && payload && payload.length) {
     return <div className={styles.sessionTooltip}>{payload[0].value} min</div>;
@@ -18,6 +32,14 @@ function CustomTooltip({ active, payload }) {
   return null;
 }
 
+/**
+ * Custom cursor component that renders a rectangle overlay on hover.
+ *
+ * @param {Object} props
+ * @param {Array} props.points - The hover point coordinates.
+ * @param {number} props.width - The width of the cursor rectangle.
+ * @returns {JSX.Element} Rectangle overlay.
+ */
 function CustomCursor({ points, width }) {
   return (
     <Rectangle
@@ -30,6 +52,15 @@ function CustomCursor({ points, width }) {
   );
 }
 
+/**
+ * Renders the average session line chart.
+ *
+ * @component
+ * @param {Object} props
+ * @param {Object} props.sessionData - Object containing session data.
+ * @param {Array<{ day: number, sessionLength: number }>} props.sessionData.sessions - List of session entries.
+ * @returns {JSX.Element} The rendered line chart component.
+ */
 export default function AverageSessionLineChart({ sessionData }) {
   const formattedData = sessionData.sessions.map((session) => ({
     day: dayLabels[session.day - 1],
@@ -84,9 +115,9 @@ AverageSessionLineChart.propTypes = {
   sessionData: PropTypes.shape({
     sessions: PropTypes.arrayOf(
       PropTypes.shape({
-        day: PropTypes.number,
-        sessionLength: PropTypes.number,
+        day: PropTypes.number.isRequired,
+        sessionLength: PropTypes.number.isRequired,
       })
     ).isRequired,
-  }),
+  }).isRequired,
 };

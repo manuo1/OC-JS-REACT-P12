@@ -1,3 +1,10 @@
+/**
+ * DailyActivityBarChart.jsx
+ *
+ * Displays a bar chart showing the user's daily activity:
+ * weight (kg) and calories burned (kCal) for each day.
+ */
+
 import {
   BarChart,
   Bar,
@@ -5,30 +12,47 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
 } from "recharts";
 import PropTypes from "prop-types";
 import styles from "./DailyActivityBarChart.module.scss";
 
+/**
+ * Custom tooltip for the daily activity chart.
+ *
+ * @param {Object} props
+ * @param {boolean} props.active - Whether the tooltip is visible.
+ * @param {Array} props.payload - The data payload for the hovered bars.
+ * @returns {JSX.Element|null} Tooltip content or null if inactive.
+ */
+function CustomTooltip({ active, payload }) {
+  if (active && payload && payload.length) {
+    return (
+      <div className={styles.tooltip}>
+        <p className={styles.tooltip_data}>{`${payload[0].value}kg`}</p>
+        <p className={styles.tooltip_data}>{`${payload[1].value}Kcal`}</p>
+      </div>
+    );
+  }
+  return null;
+}
+
+/**
+ * Renders a bar chart displaying the user's daily weight and calorie burn.
+ *
+ * @component
+ * @param {Object} props
+ * @param {Object} props.activityData - User activity data.
+ * @param {number} props.activityData.userId - ID of the user.
+ * @param {Array<{ day: string, kilogram: number, calories: number }>} props.activityData.sessions - Daily session data.
+ * @returns {JSX.Element} The rendered bar chart component.
+ */
 function DailyActivityBarChart({ activityData }) {
   const transformedData = activityData.sessions.map((session) => ({
     day: new Date(session.day).getDate(),
     kilogram: session.kilogram,
     calories: session.calories,
   }));
-
-  const CustomTooltip = ({ active, payload }) => {
-    if (active && payload && payload.length) {
-      return (
-        <div className={styles.tooltip}>
-          <p className={styles.tooltip_data}>{`${payload[0].value}kg`}</p>
-          <p className={styles.tooltip_data}>{`${payload[1].value}Kcal`}</p>
-        </div>
-      );
-    }
-    return null;
-  };
 
   return (
     <div className={styles.container}>
@@ -49,12 +73,7 @@ function DailyActivityBarChart({ activityData }) {
       <ResponsiveContainer width="100%" height="65%">
         <BarChart
           data={transformedData}
-          margin={{
-            top: 5,
-            right: 2,
-            left: 5,
-            bottom: 5,
-          }}
+          margin={{ top: 5, right: 2, left: 5, bottom: 5 }}
           barCategoryGap="35%"
         >
           <CartesianGrid
@@ -109,7 +128,6 @@ function DailyActivityBarChart({ activityData }) {
 
 DailyActivityBarChart.propTypes = {
   activityData: PropTypes.shape({
-    userId: PropTypes.number.isRequired,
     sessions: PropTypes.arrayOf(
       PropTypes.shape({
         day: PropTypes.string.isRequired,

@@ -7,6 +7,12 @@ import swimmingIcon from "../../assets/sidebar_icons/sidebar_icon_swimming.png";
 import cyclingIcon from "../../assets/sidebar_icons/sidebar_icon_cycling.png";
 import weightIcon from "../../assets/sidebar_icons/sidebar_icon_bodybuilding.png";
 
+/**
+ * Sidebar component displaying navigation icons linking to activity routes.
+ *
+ * @component
+ * @returns {JSX.Element} The sidebar navigation with activity icons
+ */
 const Sidebar = () => {
   return (
     <aside className={styles.container}>

@@ -1,3 +1,7 @@
+/**
+ * Mock data simulating the SportSee API response for testing purposes.
+ * Each user has associated metrics: activity, average sessions, and performance.
+ */
 export const mockData = {
   users: {
     12: {

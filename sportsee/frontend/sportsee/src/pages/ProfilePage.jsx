@@ -10,6 +10,15 @@ import UserScoreRadialChart from "../components/UserScoreRadialChart";
 import NutritionCard from "../components/NutritionCard";
 import Loader from "../components/Loader";
 
+/**
+ * ProfilePage component fetches and displays user data including activity,
+ * average sessions, performance, and key nutritional data.
+ *
+ * It handles loading state and redirects to 404 page on fetch error.
+ *
+ * @component
+ * @returns {JSX.Element} Profile page with charts and nutrition cards
+ */
 function ProfilePage() {
   const navigate = useNavigate();
   const { id: userId } = useParams();
@@ -18,6 +27,7 @@ function ProfilePage() {
   const [averageSessionData, setAverageSessionData] = useState(null);
   const [performanceData, setPerformanceData] = useState(null);
 
+  // Fetch user data on mount or when userId changes, redirect to 404 if fetch fails
   useEffect(() => {
     const fetchData = async () => {
       try {
