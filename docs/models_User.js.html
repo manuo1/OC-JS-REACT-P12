@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: pages/common/Sidebar.jsx</title>
+    <title>JSDoc: Source: models/User.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: pages/common/Sidebar.jsx</h1>
+    <h1 class="page-title">Source: models/User.js</h1>
 
     
 
@@ -26,44 +26,61 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React from "react";
-import { Link } from "react-router-dom";
-import styles from "./Sidebar.module.scss";
-
-import yogaIcon from "../../assets/sidebar_icons/sidebar_icon_yoga.png";
-import swimmingIcon from "../../assets/sidebar_icons/sidebar_icon_swimming.png";
-import cyclingIcon from "../../assets/sidebar_icons/sidebar_icon_cycling.png";
-import weightIcon from "../../assets/sidebar_icons/sidebar_icon_bodybuilding.png";
-
-/**
- * Sidebar component displaying navigation icons linking to activity routes.
- *
- * @component
- * @returns {JSX.Element} The sidebar navigation with activity icons
+            <pre class="prettyprint source linenums"><code>/**
+ * Class representing the main user data.
  */
-const Sidebar = () => {
-  return (
-    &lt;aside className={styles.container}>
-      &lt;nav className={styles.nav}>
-        &lt;Link to="/yoga" className={styles.link}>
-          &lt;img src={yogaIcon} alt="Yoga" />
-        &lt;/Link>
-        &lt;Link to="/natation" className={styles.link}>
-          &lt;img src={swimmingIcon} alt="Natation" />
-        &lt;/Link>
-        &lt;Link to="/cyclisme" className={styles.link}>
-          &lt;img src={cyclingIcon} alt="Cyclisme" />
-        &lt;/Link>
-        &lt;Link to="/musculation" className={styles.link}>
-          &lt;img src={weightIcon} alt="Musculation" />
-        &lt;/Link>
-      &lt;/nav>
-      &lt;p className={styles.copyright}>Copyright, SportSee 2020&lt;/p>
-    &lt;/aside>
-  );
-};
+class User {
+  /**
+   * Create a User.
+   * @param {Object} data - Raw user data from the API.
+   * @param {number} [data.id] - User ID.
+   * @param {Object} [data.userInfos] - User profile info.
+   * @param {string} [data.userInfos.firstName] - User's first name.
+   * @param {string} [data.userInfos.lastName] - User's last name.
+   * @param {number} [data.userInfos.age] - User's age.
+   * @param {number} [data.todayScore] - User's today's score.
+   * @param {number} [data.score] - Fallback score key.
+   * @param {Object} [data.keyData] - User's key nutritional data.
+   * @param {number} [data.keyData.calorieCount] - Calories.
+   * @param {number} [data.keyData.proteinCount] - Proteins.
+   * @param {number} [data.keyData.carbohydrateCount] - Carbs.
+   * @param {number} [data.keyData.lipidCount] - Lipids.
+   */
+  constructor(data = {}) {
+    const { id = null, userInfos = {}, todayScore, score } = data;
 
-export default Sidebar;
+    const { firstName = "", lastName = "", age = null } = userInfos;
+
+    const safeKeyData =
+      data.keyData &amp;&amp; typeof data.keyData === "object" ? data.keyData : {};
+
+    const {
+      calorieCount = 0,
+      proteinCount = 0,
+      carbohydrateCount = 0,
+      lipidCount = 0,
+    } = safeKeyData;
+
+    this.id = id;
+
+    this.userInfos = {
+      firstName,
+      lastName,
+      age,
+    };
+
+    this.score = todayScore ?? score ?? 0;
+
+    this.keyData = {
+      calorieCount,
+      proteinCount,
+      carbohydrateCount,
+      lipidCount,
+    };
+  }
+}
+
+export default User;
 </code></pre>
         </article>
     </section>

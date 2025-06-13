@@ -26,13 +26,7 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * AverageSessionLineChart.jsx
- *
- * Displays the average duration of user sessions over a week as a line chart.
- */
-
-import {
+            <pre class="prettyprint source linenums"><code>import {
   LineChart,
   Line,
   XAxis,
@@ -43,15 +37,13 @@ import {
 import PropTypes from "prop-types";
 import styles from "./AverageSessionLineChart.module.scss";
 
-const dayLabels = ["L", "M", "M", "J", "V", "S", "D"];
-
 /**
- * Custom tooltip component for the session chart.
+ * Custom tooltip for the average session chart.
  *
- * @param {Object} props
- * @param {boolean} props.active - Whether the tooltip is active.
- * @param {Array} props.payload - Data payload from Recharts.
- * @returns {JSX.Element|null} Tooltip content or null.
+ * @param {Object} props - Component props.
+ * @param {boolean} props.active - Tooltip visibility.
+ * @param {Array} props.payload - Data payload.
+ * @returns {JSX.Element|null} The custom tooltip component.
  */
 function CustomTooltip({ active, payload }) {
   if (active &amp;&amp; payload &amp;&amp; payload.length) {
@@ -61,12 +53,12 @@ function CustomTooltip({ active, payload }) {
 }
 
 /**
- * Custom cursor component that renders a rectangle overlay on hover.
+ * Custom cursor for the line chart (highlighting hovered area).
  *
- * @param {Object} props
- * @param {Array} props.points - The hover point coordinates.
- * @param {number} props.width - The width of the cursor rectangle.
- * @returns {JSX.Element} Rectangle overlay.
+ * @param {Object} props - Component props.
+ * @param {Array&lt;{x: number, y: number}>} props.points - Points where the cursor is rendered.
+ * @param {number} props.width - Width of the rectangle.
+ * @returns {JSX.Element} The custom cursor component.
  */
 function CustomCursor({ points, width }) {
   return (
@@ -81,26 +73,20 @@ function CustomCursor({ points, width }) {
 }
 
 /**
- * Renders the average session line chart.
+ * Renders a line chart showing the average duration of user sessions over the week.
  *
- * @component
- * @param {Object} props
- * @param {Object} props.sessionData - Object containing session data.
- * @param {Array&lt;{ day: number, sessionLength: number }>} props.sessionData.sessions - List of session entries.
- * @returns {JSX.Element} The rendered line chart component.
+ * @param {Object} props - Component props.
+ * @param {Object} props.sessionData - Data for the chart.
+ * @param {Array&lt;{ day: string, sessionLength: number }>} props.sessionData.sessions - Session data per day.
+ * @returns {JSX.Element} The line chart component.
  */
 export default function AverageSessionLineChart({ sessionData }) {
-  const formattedData = sessionData.sessions.map((session) => ({
-    day: dayLabels[session.day - 1],
-    sessionLength: session.sessionLength,
-  }));
-
   return (
     &lt;div className={styles.averageSessionChart}>
       &lt;h2>Durée moyenne des sessions&lt;/h2>
       &lt;ResponsiveContainer width="100%" height="100%">
         &lt;LineChart
-          data={formattedData}
+          data={sessionData.sessions}
           margin={{ top: 60, right: 0, left: 0, bottom: 13 }}
         >
           &lt;defs>
@@ -143,7 +129,7 @@ AverageSessionLineChart.propTypes = {
   sessionData: PropTypes.shape({
     sessions: PropTypes.arrayOf(
       PropTypes.shape({
-        day: PropTypes.number.isRequired,
+        day: PropTypes.string.isRequired,
         sessionLength: PropTypes.number.isRequired,
       })
     ).isRequired,
@@ -159,13 +145,13 @@ AverageSessionLineChart.propTypes = {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#CustomCursor">CustomCursor</a></li><li><a href="global.html#CustomTooltip">CustomTooltip</a></li><li><a href="global.html#DailyActivityBarChart">DailyActivityBarChart</a></li><li><a href="global.html#Error404">Error404</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#HomePage">HomePage</a></li><li><a href="global.html#Loader">Loader</a></li><li><a href="global.html#NutritionCard">NutritionCard</a></li><li><a href="global.html#ProfilePage">ProfilePage</a></li><li><a href="global.html#Router">Router</a></li><li><a href="global.html#Sidebar">Sidebar</a></li><li><a href="global.html#UserPerformanceRadarChart">UserPerformanceRadarChart</a></li><li><a href="global.html#UserScoreRadialChart">UserScoreRadialChart</a></li><li><a href="global.html#delay">delay</a></li><li><a href="global.html#fetchJson">fetchJson</a></li><li><a href="global.html#getMockedData">getMockedData</a></li><li><a href="global.html#mockData">mockData</a></li><li><a href="global.html#userService">userService</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="User.html">User</a></li><li><a href="UserActivity.html">UserActivity</a></li><li><a href="UserAverageSessions.html">UserAverageSessions</a></li><li><a href="UserPerformance.html">UserPerformance</a></li></ul><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#CustomCursor">CustomCursor</a></li><li><a href="global.html#CustomTooltip">CustomTooltip</a></li><li><a href="global.html#DailyActivityBarChart">DailyActivityBarChart</a></li><li><a href="global.html#Error404">Error404</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#HomePage">HomePage</a></li><li><a href="global.html#Loader">Loader</a></li><li><a href="global.html#NutritionCard">NutritionCard</a></li><li><a href="global.html#ProfilePage">ProfilePage</a></li><li><a href="global.html#Router">Router</a></li><li><a href="global.html#Sidebar">Sidebar</a></li><li><a href="global.html#UserScoreRadialChart">UserScoreRadialChart</a></li><li><a href="global.html#delay">delay</a></li><li><a href="global.html#fetchJson">fetchJson</a></li><li><a href="global.html#getMockedData">getMockedData</a></li><li><a href="global.html#userService">userService</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Fri Jun 13 2025 12:36:39 GMT+0200 (heure d’été d’Europe centrale)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Fri Jun 13 2025 18:09:12 GMT+0200 (heure d’été d’Europe centrale)
 </footer>
 
 <script> prettyPrint(); </script>

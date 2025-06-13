@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: pages/common/Sidebar.jsx</title>
+    <title>JSDoc: Source: models/UserAverageSessions.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: pages/common/Sidebar.jsx</h1>
+    <h1 class="page-title">Source: models/UserAverageSessions.js</h1>
 
     
 
@@ -26,44 +26,40 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React from "react";
-import { Link } from "react-router-dom";
-import styles from "./Sidebar.module.scss";
-
-import yogaIcon from "../../assets/sidebar_icons/sidebar_icon_yoga.png";
-import swimmingIcon from "../../assets/sidebar_icons/sidebar_icon_swimming.png";
-import cyclingIcon from "../../assets/sidebar_icons/sidebar_icon_cycling.png";
-import weightIcon from "../../assets/sidebar_icons/sidebar_icon_bodybuilding.png";
-
-/**
- * Sidebar component displaying navigation icons linking to activity routes.
- *
- * @component
- * @returns {JSX.Element} The sidebar navigation with activity icons
+            <pre class="prettyprint source linenums"><code>/**
+ * Represents the average duration of user sessions for each day of the week.
  */
-const Sidebar = () => {
-  return (
-    &lt;aside className={styles.container}>
-      &lt;nav className={styles.nav}>
-        &lt;Link to="/yoga" className={styles.link}>
-          &lt;img src={yogaIcon} alt="Yoga" />
-        &lt;/Link>
-        &lt;Link to="/natation" className={styles.link}>
-          &lt;img src={swimmingIcon} alt="Natation" />
-        &lt;/Link>
-        &lt;Link to="/cyclisme" className={styles.link}>
-          &lt;img src={cyclingIcon} alt="Cyclisme" />
-        &lt;/Link>
-        &lt;Link to="/musculation" className={styles.link}>
-          &lt;img src={weightIcon} alt="Musculation" />
-        &lt;/Link>
-      &lt;/nav>
-      &lt;p className={styles.copyright}>Copyright, SportSee 2020&lt;/p>
-    &lt;/aside>
-  );
-};
+class UserAverageSessions {
+  /**
+   * Creates a new instance of UserAverageSessions.
+   *
+   * @param {Object} data - The raw data object from the API.
+   * @param {number} [data.userId] - The ID of the user.
+   * @param {Array&lt;Object>} [data.sessions] - An array of session objects.
+   */
+  constructor(data = {}) {
+    /** @type {number|null} */
+    this.userId = data.userId ?? null;
 
-export default Sidebar;
+    /**
+     * Array of sessions with translated day labels.
+     * @type {Array&lt;{ day: string, sessionLength: number }>}
+     */
+    this.sessions = (data.sessions ?? []).map((session = {}) => {
+      const { day = 0, sessionLength = 0 } = session;
+
+      const dayLabels = ["L", "M", "M", "J", "V", "S", "D"];
+      const label = day >= 1 &amp;&amp; day &lt;= 7 ? dayLabels[day - 1] : "?";
+
+      return {
+        day: label,
+        sessionLength,
+      };
+    });
+  }
+}
+
+export default UserAverageSessions;
 </code></pre>
         </article>
     </section>

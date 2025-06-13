@@ -44,6 +44,7 @@ function ProfilePage() {
         setAverageSessionData(userAverageSessions);
         setPerformanceData(userPerformance);
       } catch (err) {
+        console.error(err);
         if (err.status === 404) {
           setErrorMessage("Utilisateur inconnu");
         } else {

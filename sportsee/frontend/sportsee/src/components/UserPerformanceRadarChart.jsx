@@ -1,3 +1,17 @@
+/**
+ * Radar chart component to display user performance data.
+ * The data is sorted according to a custom order for better readability.
+ *
+ * @component
+ * @param {Object} props - Component props
+ * @param {Object} props.performanceData - The user's performance data
+ * @param {Array<Object>} props.performanceData.data - Array of performance metrics
+ * @param {string} props.performanceData.data[].kindLabel - Label of the performance kind (e.g. "Cardio")
+ * @param {number} props.performanceData.data[].value - Associated performance value
+ *
+ * @returns {JSX.Element} A radar chart component
+ */
+
 import {
   RadarChart,
   PolarGrid,
@@ -9,57 +23,25 @@ import {
 import PropTypes from "prop-types";
 import styles from "./UserPerformanceRadarChart.module.scss";
 
-/**
- * Display a radar chart of user's performance metrics.
- *
- * The performance data contains a mapping of kind IDs to performance categories,
- * and a list of performance values for each kind.
- *
- * The chart sorts and translates these categories before displaying.
- *
- * @component
- * @param {Object} props
- * @param {Object} props.performanceData - Data containing performance metrics
- * @param {Object.<string|number, string>} props.performanceData.kind - Mapping from numeric keys to activity types
- * @param {Array<{ kind: number, value: number }>} props.performanceData.data - List of performance values by kind
- *
- * @returns {JSX.Element}
- *
- * @example
- * <UserPerformanceRadarChart performanceData={data} />
- */
 function UserPerformanceRadarChart({ performanceData }) {
-  const kindTranslations = {
-    cardio: "Cardio",
-    energy: "Énergie",
-    endurance: "Endurance",
-    strength: "Force",
-    speed: "Vitesse",
-    intensity: "Intensité",
-  };
-
-  const kindMap = Object.fromEntries(
-    Object.entries(performanceData.kind).map(([key, value]) => [
-      parseInt(key),
-      kindTranslations[value] || value,
-    ])
-  );
-
-  const customOrder = [6, 5, 4, 3, 2, 1];
+  const customOrder = [
+    "Intensité",
+    "Vitesse",
+    "Force",
+    "Endurance",
+    "Énergie",
+    "Cardio",
+  ];
 
   const sortedData = [...performanceData.data].sort(
-    (a, b) => customOrder.indexOf(a.kind) - customOrder.indexOf(b.kind)
+    (a, b) =>
+      customOrder.indexOf(a.kindLabel) - customOrder.indexOf(b.kindLabel)
   );
-
-  const formattedData = sortedData.map((item) => ({
-    ...item,
-    kindLabel: kindMap[item.kind],
-  }));
 
   return (
     <div className={styles.performanceChart}>
       <ResponsiveContainer width="100%" height="100%">
-        <RadarChart data={formattedData} outerRadius="71%">
+        <RadarChart data={sortedData} outerRadius="71%">
           <PolarGrid className={styles.polarGrid} radialLines={false} />
           <PolarAngleAxis
             dataKey="kindLabel"
@@ -76,10 +58,9 @@ function UserPerformanceRadarChart({ performanceData }) {
 
 UserPerformanceRadarChart.propTypes = {
   performanceData: PropTypes.shape({
-    kind: PropTypes.objectOf(PropTypes.string).isRequired,
     data: PropTypes.arrayOf(
       PropTypes.shape({
-        kind: PropTypes.number.isRequired,
+        kindLabel: PropTypes.string.isRequired,
         value: PropTypes.number.isRequired,
       })
     ).isRequired,

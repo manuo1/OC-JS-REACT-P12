@@ -1,9 +1,3 @@
-/**
- * AverageSessionLineChart.jsx
- *
- * Displays the average duration of user sessions over a week as a line chart.
- */
-
 import {
   LineChart,
   Line,
@@ -15,15 +9,13 @@ import {
 import PropTypes from "prop-types";
 import styles from "./AverageSessionLineChart.module.scss";
 
-const dayLabels = ["L", "M", "M", "J", "V", "S", "D"];
-
 /**
- * Custom tooltip component for the session chart.
+ * Custom tooltip for the average session chart.
  *
- * @param {Object} props
- * @param {boolean} props.active - Whether the tooltip is active.
- * @param {Array} props.payload - Data payload from Recharts.
- * @returns {JSX.Element|null} Tooltip content or null.
+ * @param {Object} props - Component props.
+ * @param {boolean} props.active - Tooltip visibility.
+ * @param {Array} props.payload - Data payload.
+ * @returns {JSX.Element|null} The custom tooltip component.
  */
 function CustomTooltip({ active, payload }) {
   if (active && payload && payload.length) {
@@ -33,12 +25,12 @@ function CustomTooltip({ active, payload }) {
 }
 
 /**
- * Custom cursor component that renders a rectangle overlay on hover.
+ * Custom cursor for the line chart (highlighting hovered area).
  *
- * @param {Object} props
- * @param {Array} props.points - The hover point coordinates.
- * @param {number} props.width - The width of the cursor rectangle.
- * @returns {JSX.Element} Rectangle overlay.
+ * @param {Object} props - Component props.
+ * @param {Array<{x: number, y: number}>} props.points - Points where the cursor is rendered.
+ * @param {number} props.width - Width of the rectangle.
+ * @returns {JSX.Element} The custom cursor component.
  */
 function CustomCursor({ points, width }) {
   return (
@@ -53,26 +45,20 @@ function CustomCursor({ points, width }) {
 }
 
 /**
- * Renders the average session line chart.
+ * Renders a line chart showing the average duration of user sessions over the week.
  *
- * @component
- * @param {Object} props
- * @param {Object} props.sessionData - Object containing session data.
- * @param {Array<{ day: number, sessionLength: number }>} props.sessionData.sessions - List of session entries.
- * @returns {JSX.Element} The rendered line chart component.
+ * @param {Object} props - Component props.
+ * @param {Object} props.sessionData - Data for the chart.
+ * @param {Array<{ day: string, sessionLength: number }>} props.sessionData.sessions - Session data per day.
+ * @returns {JSX.Element} The line chart component.
  */
 export default function AverageSessionLineChart({ sessionData }) {
-  const formattedData = sessionData.sessions.map((session) => ({
-    day: dayLabels[session.day - 1],
-    sessionLength: session.sessionLength,
-  }));
-
   return (
     <div className={styles.averageSessionChart}>
       <h2>Durée moyenne des sessions</h2>
       <ResponsiveContainer width="100%" height="100%">
         <LineChart
-          data={formattedData}
+          data={sessionData.sessions}
           margin={{ top: 60, right: 0, left: 0, bottom: 13 }}
         >
           <defs>
@@ -115,7 +101,7 @@ AverageSessionLineChart.propTypes = {
   sessionData: PropTypes.shape({
     sessions: PropTypes.arrayOf(
       PropTypes.shape({
-        day: PropTypes.number.isRequired,
+        day: PropTypes.string.isRequired,
         sessionLength: PropTypes.number.isRequired,
       })
     ).isRequired,

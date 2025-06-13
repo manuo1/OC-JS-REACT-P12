@@ -98,14 +98,13 @@
 
         
             
-<h4 class="name" id="mockData"><span class="type-signature">(constant) </span>mockData<span class="type-signature"></span></h4>
+<h4 class="name" id="userService"><span class="type-signature">(constant) </span>userService<span class="type-signature"></span></h4>
 
 
 
 
 <div class="description">
-    Mock data simulating the SportSee API response for testing purposes.
-Each user has associated metrics: activity, average sessions, and performance.
+    Mock service to fetch user data and instantiate model classes.
 </div>
 
 
@@ -143,7 +142,7 @@ Each user has associated metrics: activity, average sessions, and performance.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mocks_mockData.js.html">mocks/mockData.js</a>, <a href="mocks_mockData.js.html#line5">line 5</a>
+        <a href="mocks_userService.js.html">mocks/userService.js</a>, <a href="mocks_userService.js.html#line39">line 39</a>
     </li></ul></dd>
     
 
@@ -167,7 +166,7 @@ Each user has associated metrics: activity, average sessions, and performance.
 
 
 <div class="description">
-    Service providing user-related API calls.
+    Service to fetch and instantiate user-related data models from API.
 </div>
 
 
@@ -205,7 +204,7 @@ Each user has associated metrics: activity, average sessions, and performance.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="services_userService.js.html">services/userService.js</a>, <a href="services_userService.js.html#line8">line 8</a>
+        <a href="services_userService.js.html">services/userService.js</a>, <a href="services_userService.js.html#line12">line 12</a>
     </li></ul></dd>
     
 
@@ -352,7 +351,7 @@ Wraps the entire app with React Router's BrowserRouter for routing.
 
 
 <div class="description">
-    Custom cursor component that renders a rectangle overlay on hover.
+    Custom cursor for the line chart (highlighting hovered area).
 </div>
 
 
@@ -404,7 +403,7 @@ Wraps the entire app with React Router's BrowserRouter for routing.
 
             
 
-            <td class="description last">
+            <td class="description last">Component props.
                 <h6>Properties</h6>
                 
 
@@ -436,7 +435,7 @@ Wraps the entire app with React Router's BrowserRouter for routing.
             <td class="type">
             
                 
-<span class="param-type">Array</span>
+<span class="param-type">Array.&lt;{x: number, y: number}></span>
 
 
             
@@ -446,7 +445,7 @@ Wraps the entire app with React Router's BrowserRouter for routing.
 
             
 
-            <td class="description last">The hover point coordinates.</td>
+            <td class="description last">Points where the cursor is rendered.</td>
         </tr>
 
     
@@ -469,7 +468,7 @@ Wraps the entire app with React Router's BrowserRouter for routing.
 
             
 
-            <td class="description last">The width of the cursor rectangle.</td>
+            <td class="description last">Width of the rectangle.</td>
         </tr>
 
     
@@ -517,7 +516,7 @@ Wraps the entire app with React Router's BrowserRouter for routing.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_AverageSessionLineChart.jsx.html">components/AverageSessionLineChart.jsx</a>, <a href="components_AverageSessionLineChart.jsx.html#line43">line 43</a>
+        <a href="components_AverageSessionLineChart.jsx.html">components/AverageSessionLineChart.jsx</a>, <a href="components_AverageSessionLineChart.jsx.html#line35">line 35</a>
     </li></ul></dd>
     
 
@@ -546,7 +545,7 @@ Wraps the entire app with React Router's BrowserRouter for routing.
 
         
 <div class="param-desc">
-    Rectangle overlay.
+    The custom cursor component.
 </div>
 
 
@@ -583,7 +582,7 @@ Wraps the entire app with React Router's BrowserRouter for routing.
 
 
 <div class="description">
-    Custom tooltip component for the session chart.
+    Custom tooltip for the average session chart.
 </div>
 
 
@@ -635,7 +634,7 @@ Wraps the entire app with React Router's BrowserRouter for routing.
 
             
 
-            <td class="description last">
+            <td class="description last">Component props.
                 <h6>Properties</h6>
                 
 
@@ -677,7 +676,7 @@ Wraps the entire app with React Router's BrowserRouter for routing.
 
             
 
-            <td class="description last">Whether the tooltip is active.</td>
+            <td class="description last">Tooltip visibility.</td>
         </tr>
 
     
@@ -700,7 +699,7 @@ Wraps the entire app with React Router's BrowserRouter for routing.
 
             
 
-            <td class="description last">Data payload from Recharts.</td>
+            <td class="description last">Data payload.</td>
         </tr>
 
     
@@ -748,7 +747,7 @@ Wraps the entire app with React Router's BrowserRouter for routing.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_AverageSessionLineChart.jsx.html">components/AverageSessionLineChart.jsx</a>, <a href="components_AverageSessionLineChart.jsx.html#line28">line 28</a>
+        <a href="components_AverageSessionLineChart.jsx.html">components/AverageSessionLineChart.jsx</a>, <a href="components_AverageSessionLineChart.jsx.html#line20">line 20</a>
     </li></ul></dd>
     
 
@@ -777,7 +776,7 @@ Wraps the entire app with React Router's BrowserRouter for routing.
 
         
 <div class="param-desc">
-    Tooltip content or null.
+    The custom tooltip component.
 </div>
 
 
@@ -817,7 +816,7 @@ Wraps the entire app with React Router's BrowserRouter for routing.
 
 
 <div class="description">
-    Custom tooltip for the daily activity chart.
+    Custom tooltip component for the daily activity bar chart.
 </div>
 
 
@@ -869,7 +868,7 @@ Wraps the entire app with React Router's BrowserRouter for routing.
 
             
 
-            <td class="description last">
+            <td class="description last">Component props.
                 <h6>Properties</h6>
                 
 
@@ -911,7 +910,7 @@ Wraps the entire app with React Router's BrowserRouter for routing.
 
             
 
-            <td class="description last">Whether the tooltip is visible.</td>
+            <td class="description last">Whether the tooltip is active (visible).</td>
         </tr>
 
     
@@ -934,7 +933,7 @@ Wraps the entire app with React Router's BrowserRouter for routing.
 
             
 
-            <td class="description last">The data payload for the hovered bars.</td>
+            <td class="description last">The data payload for the tooltip.</td>
         </tr>
 
     
@@ -982,7 +981,7 @@ Wraps the entire app with React Router's BrowserRouter for routing.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_DailyActivityBarChart.jsx.html">components/DailyActivityBarChart.jsx</a>, <a href="components_DailyActivityBarChart.jsx.html#line28">line 28</a>
+        <a href="components_DailyActivityBarChart.jsx.html">components/DailyActivityBarChart.jsx</a>, <a href="components_DailyActivityBarChart.jsx.html#line21">line 21</a>
     </li></ul></dd>
     
 
@@ -1011,7 +1010,7 @@ Wraps the entire app with React Router's BrowserRouter for routing.
 
         
 <div class="param-desc">
-    Tooltip content or null if inactive.
+    Rendered tooltip or null if inactive.
 </div>
 
 
@@ -1051,7 +1050,7 @@ Wraps the entire app with React Router's BrowserRouter for routing.
 
 
 <div class="description">
-    Renders a bar chart displaying the user's daily weight and calorie burn.
+    Displays a bar chart representing the user's daily activity (weight and calories).
 </div>
 
 
@@ -1103,7 +1102,7 @@ Wraps the entire app with React Router's BrowserRouter for routing.
 
             
 
-            <td class="description last">
+            <td class="description last">Component props.
                 <h6>Properties</h6>
                 
 
@@ -1171,7 +1170,72 @@ Wraps the entire app with React Router's BrowserRouter for routing.
 
         <tr>
             
-                <td class="name"><code>userId</code></td>
+                <td class="name"><code>sessions</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Object></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Array of activity sessions.
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>day</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Date string representing the day of the session.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>kilogram</code></td>
             
 
             <td class="type">
@@ -1187,20 +1251,20 @@ Wraps the entire app with React Router's BrowserRouter for routing.
 
             
 
-            <td class="description last">ID of the user.</td>
+            <td class="description last">Weight in kilograms.</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>sessions</code></td>
+                <td class="name"><code>calories</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;{day: string, kilogram: number, calories: number}></span>
+<span class="param-type">number</span>
 
 
             
@@ -1210,7 +1274,14 @@ Wraps the entire app with React Router's BrowserRouter for routing.
 
             
 
-            <td class="description last">Daily session data.</td>
+            <td class="description last">Calories burned.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -1265,7 +1336,7 @@ Wraps the entire app with React Router's BrowserRouter for routing.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_DailyActivityBarChart.jsx.html">components/DailyActivityBarChart.jsx</a>, <a href="components_DailyActivityBarChart.jsx.html#line50">line 50</a>
+        <a href="components_DailyActivityBarChart.jsx.html">components/DailyActivityBarChart.jsx</a>, <a href="components_DailyActivityBarChart.jsx.html#line44">line 44</a>
     </li></ul></dd>
     
 
@@ -1294,7 +1365,7 @@ Wraps the entire app with React Router's BrowserRouter for routing.
 
         
 <div class="param-desc">
-    The rendered bar chart component.
+    Rendered bar chart component.
 </div>
 
 
@@ -2007,10 +2078,11 @@ Depending on the `type` prop, it shows the corresponding icon, label and unit.
 
 
 <div class="description">
-    ProfilePage component fetches and displays user data including activity,
-average sessions, performance, and key nutritional data.
+    ProfilePage component.
 
-It handles loading state and redirects to 404 page on fetch error.
+Displays the user's dashboard with various data visualizations
+such as activity charts, session duration, performance, score,
+and nutrition cards. Handles data fetching and error states.
 </div>
 
 
@@ -2054,7 +2126,7 @@ It handles loading state and redirects to 404 page on fetch error.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pages_ProfilePage.jsx.html">pages/ProfilePage.jsx</a>, <a href="pages_ProfilePage.jsx.html#line22">line 22</a>
+        <a href="pages_ProfilePage.jsx.html">pages/ProfilePage.jsx</a>, <a href="pages_ProfilePage.jsx.html#line23">line 23</a>
     </li></ul></dd>
     
 
@@ -2083,7 +2155,7 @@ It handles loading state and redirects to 404 page on fetch error.
 
         
 <div class="param-desc">
-    Profile page with charts and nutrition cards
+    Rendered profile page or loader or error message
 </div>
 
 
@@ -2341,292 +2413,6 @@ Routes:
     
 
     
-    <h4 class="name" id="UserPerformanceRadarChart"><span class="type-signature"></span>UserPerformanceRadarChart<span class="signature">(props)</span><span class="type-signature"> &rarr; {JSX.Element}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Display a radar chart of user's performance metrics.
-
-The performance data contains a mapping of kind IDs to performance categories,
-and a list of performance values for each kind.
-
-The chart sorts and translates these categories before displaying.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>props</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>performanceData</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Data containing performance metrics
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>kind</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object.&lt;(string|number), string></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Mapping from numeric keys to activity types</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>data</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;{kind: number, value: number}></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">List of performance values by kind</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_UserPerformanceRadarChart.jsx.html">components/UserPerformanceRadarChart.jsx</a>, <a href="components_UserPerformanceRadarChart.jsx.html#line31">line 31</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">JSX.Element</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>&lt;UserPerformanceRadarChart performanceData={data} /></code></pre>
-
-
-
-        
-            
-
-    
-
-    
     <h4 class="name" id="UserScoreRadialChart"><span class="type-signature"></span>UserScoreRadialChart<span class="signature">(props)</span><span class="type-signature"> &rarr; {JSX.Element}</span></h4>
     
 
@@ -2847,7 +2633,7 @@ It is converted to a percentage and displayed as a filled arc.
 
 
 <div class="description">
-    Helper to simulate network delay.
+    Simulate a delay to mimic async calls (e.g., network latency).
 </div>
 
 
@@ -2899,7 +2685,7 @@ It is converted to a percentage and displayed as a filled arc.
 
             
 
-            <td class="description last">Milliseconds to wait</td>
+            <td class="description last">Delay in milliseconds.</td>
         </tr>
 
     
@@ -2940,7 +2726,7 @@ It is converted to a percentage and displayed as a filled arc.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mocks_userService.js.html">mocks/userService.js</a>, <a href="mocks_userService.js.html#line8">line 8</a>
+        <a href="mocks_userService.js.html">mocks/userService.js</a>, <a href="mocks_userService.js.html#line13">line 13</a>
     </li></ul></dd>
     
 
@@ -2994,7 +2780,7 @@ It is converted to a percentage and displayed as a filled arc.
     
 
     
-    <h4 class="name" id="fetchJson"><span class="type-signature">(async) </span>fetchJson<span class="signature">(url)</span><span class="type-signature"> &rarr; {Promise.&lt;any>}</span></h4>
+    <h4 class="name" id="fetchJson"><span class="type-signature">(async) </span>fetchJson<span class="signature">(url)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>}</span></h4>
     
 
     
@@ -3002,11 +2788,13 @@ It is converted to a percentage and displayed as a filled arc.
 
 
 <div class="description">
-    Fetches JSON data from the given URL.
+    Fetches JSON data from the given URL and handles both HTTP and network errors.
 
-Performs a fetch request and returns the parsed JSON response.
-Throws an error if the HTTP response status is not OK (status 200-299),
-or if the fetch itself fails.
+- Throws an error with a `status` property:
+  - `res.status` for HTTP errors (like 404 or 500)
+  - `0` for network errors or CORS failures
+
+- Logs detailed error messages in the console for debugging.
 </div>
 
 
@@ -3129,7 +2917,7 @@ or if the fetch itself fails.
 <dl>
     <dt>
         <div class="param-desc">
-        Throws if the HTTP status is not ok or fetch fails.
+        If the request fails or the server responds with a non-2xx status.
         </div>
     </dt>
     <dd></dd>
@@ -3157,7 +2945,7 @@ or if the fetch itself fails.
 
         
 <div class="param-desc">
-    A promise that resolves to the parsed JSON data.
+    The parsed JSON response.
 </div>
 
 
@@ -3168,7 +2956,7 @@ or if the fetch itself fails.
     </dt>
     <dd>
         
-<span class="param-type">Promise.&lt;any></span>
+<span class="param-type">Promise.&lt;Object></span>
 
 
     </dd>
@@ -3194,8 +2982,8 @@ or if the fetch itself fails.
 
 
 <div class="description">
-    Retrieve mocked data section for a user by ID.
-Throws if no data found.
+    Retrieve mock data from the dataset by section and userId.
+Throws an error if data is missing.
 </div>
 
 
@@ -3247,7 +3035,7 @@ Throws if no data found.
 
             
 
-            <td class="description last">Section key in mockData (e.g. "users", "activities")</td>
+            <td class="description last">The data section key (e.g., "users").</td>
         </tr>
 
     
@@ -3261,6 +3049,9 @@ Throws if no data found.
             
                 
 <span class="param-type">number</span>
+|
+
+<span class="param-type">string</span>
 
 
             
@@ -3270,7 +3061,7 @@ Throws if no data found.
 
             
 
-            <td class="description last">User ID</td>
+            <td class="description last">The user ID.</td>
         </tr>
 
     
@@ -3311,7 +3102,7 @@ Throws if no data found.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mocks_userService.js.html">mocks/userService.js</a>, <a href="mocks_userService.js.html#line20">line 20</a>
+        <a href="mocks_userService.js.html">mocks/userService.js</a>, <a href="mocks_userService.js.html#line25">line 25</a>
     </li></ul></dd>
     
 
@@ -3334,13 +3125,42 @@ Throws if no data found.
 
 
 
+<h5>Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        If no data found for given userId in the section.
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
 
 
 <h5>Returns:</h5>
 
         
 <div class="param-desc">
-    The user-specific data from the mock
+    The corresponding mock data.
 </div>
 
 
@@ -3379,13 +3199,13 @@ Throws if no data found.
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#CustomCursor">CustomCursor</a></li><li><a href="global.html#CustomTooltip">CustomTooltip</a></li><li><a href="global.html#DailyActivityBarChart">DailyActivityBarChart</a></li><li><a href="global.html#Error404">Error404</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#HomePage">HomePage</a></li><li><a href="global.html#Loader">Loader</a></li><li><a href="global.html#NutritionCard">NutritionCard</a></li><li><a href="global.html#ProfilePage">ProfilePage</a></li><li><a href="global.html#Router">Router</a></li><li><a href="global.html#Sidebar">Sidebar</a></li><li><a href="global.html#UserPerformanceRadarChart">UserPerformanceRadarChart</a></li><li><a href="global.html#UserScoreRadialChart">UserScoreRadialChart</a></li><li><a href="global.html#delay">delay</a></li><li><a href="global.html#fetchJson">fetchJson</a></li><li><a href="global.html#getMockedData">getMockedData</a></li><li><a href="global.html#mockData">mockData</a></li><li><a href="global.html#userService">userService</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="User.html">User</a></li><li><a href="UserActivity.html">UserActivity</a></li><li><a href="UserAverageSessions.html">UserAverageSessions</a></li><li><a href="UserPerformance.html">UserPerformance</a></li></ul><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#CustomCursor">CustomCursor</a></li><li><a href="global.html#CustomTooltip">CustomTooltip</a></li><li><a href="global.html#DailyActivityBarChart">DailyActivityBarChart</a></li><li><a href="global.html#Error404">Error404</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#HomePage">HomePage</a></li><li><a href="global.html#Loader">Loader</a></li><li><a href="global.html#NutritionCard">NutritionCard</a></li><li><a href="global.html#ProfilePage">ProfilePage</a></li><li><a href="global.html#Router">Router</a></li><li><a href="global.html#Sidebar">Sidebar</a></li><li><a href="global.html#UserScoreRadialChart">UserScoreRadialChart</a></li><li><a href="global.html#delay">delay</a></li><li><a href="global.html#fetchJson">fetchJson</a></li><li><a href="global.html#getMockedData">getMockedData</a></li><li><a href="global.html#userService">userService</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Fri Jun 13 2025 12:36:39 GMT+0200 (heure d’été d’Europe centrale)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Fri Jun 13 2025 18:09:12 GMT+0200 (heure d’été d’Europe centrale)
 </footer>
 
 <script> prettyPrint(); </script>

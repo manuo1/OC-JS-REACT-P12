@@ -27,10 +27,15 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import { mockData } from "./mockData";
+// import { mockData } from "./mockData";
+import User from "../models/User";
+import UserActivity from "../models/UserActivity";
+import UserAverageSessions from "../models/UserAverageSessions";
+import UserPerformance from "../models/UserPerformance";
 
 /**
- * Helper to simulate network delay.
- * @param {number} ms Milliseconds to wait
+ * Simulate a delay to mimic async calls (e.g., network latency).
+ * @param {number} ms - Delay in milliseconds.
  * @returns {Promise&lt;void>}
  */
 function delay(ms) {
@@ -38,12 +43,12 @@ function delay(ms) {
 }
 
 /**
- * Retrieve mocked data section for a user by ID.
- * Throws if no data found.
- *
- * @param {string} key - Section key in mockData (e.g. "users", "activities")
- * @param {number} userId - User ID
- * @returns {object} The user-specific data from the mock
+ * Retrieve mock data from the dataset by section and userId.
+ * Throws an error if data is missing.
+ * @param {string} key - The data section key (e.g., "users").
+ * @param {number|string} userId - The user ID.
+ * @returns {object} The corresponding mock data.
+ * @throws {Error} If no data found for given userId in the section.
  */
 function getMockedData(key, userId) {
   const sectionData = mockData[key];
@@ -56,51 +61,49 @@ function getMockedData(key, userId) {
   return userData;
 }
 
+/**
+ * Mock service to fetch user data and instantiate model classes.
+ */
 const userService = {
   /**
-   * Get main user data including key statistics.
-   * Resolves after a short delay to simulate API response time.
-   *
-   * @param {number} userId
-   * @returns {Promise&lt;object>} User data with `score` normalized (todayScore or score)
+   * Get main user data by ID.
+   * @param {number|string} userId - The user ID.
+   * @returns {Promise&lt;User>} Resolves with a User instance.
    */
   getUserMainData: async (userId) => {
     await delay(500);
     const data = getMockedData("users", userId);
-    return {
-      ...data,
-      score: data.todayScore ?? data.score,
-    };
+    return new User(data);
   },
 
   /**
-   * Get user's daily activity data (sessions).
-   *
-   * @param {number} userId
-   * @returns {Promise&lt;object>} Activity data object with sessions array
+   * Get user activity data by ID.
+   * @param {number|string} userId - The user ID.
+   * @returns {Promise&lt;UserActivity>} Resolves with a UserActivity instance.
    */
   getUserActivity: async (userId) => {
-    return getMockedData("activities", userId);
+    const data = getMockedData("activities", userId);
+    return new UserActivity(data);
   },
 
   /**
-   * Get user's average session lengths per day.
-   *
-   * @param {number} userId
-   * @returns {Promise&lt;object>} Average sessions data
+   * Get user average sessions data by ID.
+   * @param {number|string} userId - The user ID.
+   * @returns {Promise&lt;UserAverageSessions>} Resolves with a UserAverageSessions instance.
    */
   getUserAverageSessions: async (userId) => {
-    return getMockedData("averageSessions", userId);
+    const data = getMockedData("averageSessions", userId);
+    return new UserAverageSessions(data);
   },
 
   /**
-   * Get user's performance data.
-   *
-   * @param {number} userId
-   * @returns {Promise&lt;object>} Performance data including kind mapping and values
+   * Get user performance data by ID.
+   * @param {number|string} userId - The user ID.
+   * @returns {Promise&lt;UserPerformance>} Resolves with a UserPerformance instance.
    */
   getUserPerformance: async (userId) => {
-    return getMockedData("performances", userId);
+    const data = getMockedData("performances", userId);
+    return new UserPerformance(data);
   },
 };
 
@@ -115,13 +118,13 @@ export default userService;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#CustomCursor">CustomCursor</a></li><li><a href="global.html#CustomTooltip">CustomTooltip</a></li><li><a href="global.html#DailyActivityBarChart">DailyActivityBarChart</a></li><li><a href="global.html#Error404">Error404</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#HomePage">HomePage</a></li><li><a href="global.html#Loader">Loader</a></li><li><a href="global.html#NutritionCard">NutritionCard</a></li><li><a href="global.html#ProfilePage">ProfilePage</a></li><li><a href="global.html#Router">Router</a></li><li><a href="global.html#Sidebar">Sidebar</a></li><li><a href="global.html#UserPerformanceRadarChart">UserPerformanceRadarChart</a></li><li><a href="global.html#UserScoreRadialChart">UserScoreRadialChart</a></li><li><a href="global.html#delay">delay</a></li><li><a href="global.html#fetchJson">fetchJson</a></li><li><a href="global.html#getMockedData">getMockedData</a></li><li><a href="global.html#mockData">mockData</a></li><li><a href="global.html#userService">userService</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="User.html">User</a></li><li><a href="UserActivity.html">UserActivity</a></li><li><a href="UserAverageSessions.html">UserAverageSessions</a></li><li><a href="UserPerformance.html">UserPerformance</a></li></ul><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#CustomCursor">CustomCursor</a></li><li><a href="global.html#CustomTooltip">CustomTooltip</a></li><li><a href="global.html#DailyActivityBarChart">DailyActivityBarChart</a></li><li><a href="global.html#Error404">Error404</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#HomePage">HomePage</a></li><li><a href="global.html#Loader">Loader</a></li><li><a href="global.html#NutritionCard">NutritionCard</a></li><li><a href="global.html#ProfilePage">ProfilePage</a></li><li><a href="global.html#Router">Router</a></li><li><a href="global.html#Sidebar">Sidebar</a></li><li><a href="global.html#UserScoreRadialChart">UserScoreRadialChart</a></li><li><a href="global.html#delay">delay</a></li><li><a href="global.html#fetchJson">fetchJson</a></li><li><a href="global.html#getMockedData">getMockedData</a></li><li><a href="global.html#userService">userService</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Fri Jun 13 2025 12:36:39 GMT+0200 (heure d’été d’Europe centrale)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Fri Jun 13 2025 18:09:12 GMT+0200 (heure d’été d’Europe centrale)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -1,7 +1,3 @@
-/**
- * Mock data simulating the SportSee API response for testing purposes.
- * Each user has associated metrics: activity, average sessions, and performance.
- */
 export const mockData = {
   users: {
     12: {
@@ -25,6 +21,12 @@ export const mockData = {
         carbohydrateCount: 150,
         lipidCount: 120,
       },
+    },
+    99: {
+      id: 99,
+      userInfos: { firstName: null, lastName: 1234, age: "unknown" },
+      todayScore: "N/A",
+      keyData: null,
     },
   },
 
@@ -53,7 +55,16 @@ export const mockData = {
         { day: "2020-07-07", kilogram: 69, calories: 390 },
       ],
     },
+    99: {
+      userId: 99,
+      sessions: [
+        { day: null, kilogram: "eighty", calories: "two hundred" },
+        { day: "not a date", kilogram: null, calories: -10 },
+        "invalid session",
+      ],
+    },
   },
+
   averageSessions: {
     12: {
       userId: 12,
@@ -79,7 +90,16 @@ export const mockData = {
         { day: 7, sessionLength: 50 },
       ],
     },
+    99: {
+      userId: 99,
+      sessions: [
+        { day: "first", sessionLength: "thirty" },
+        { day: 2, sessionLength: null },
+        "invalid session",
+      ],
+    },
   },
+
   performances: {
     12: {
       userId: 12,
@@ -118,6 +138,11 @@ export const mockData = {
         { value: 220, kind: 5 },
         { value: 110, kind: 6 },
       ],
+    },
+    99: {
+      userId: 99,
+      kind: null,
+      data: "should be array",
     },
   },
 };

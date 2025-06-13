@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: pages/common/Sidebar.jsx</title>
+    <title>JSDoc: Source: models/UserPerformance.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: pages/common/Sidebar.jsx</h1>
+    <h1 class="page-title">Source: models/UserPerformance.js</h1>
 
     
 
@@ -26,44 +26,52 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React from "react";
-import { Link } from "react-router-dom";
-import styles from "./Sidebar.module.scss";
-
-import yogaIcon from "../../assets/sidebar_icons/sidebar_icon_yoga.png";
-import swimmingIcon from "../../assets/sidebar_icons/sidebar_icon_swimming.png";
-import cyclingIcon from "../../assets/sidebar_icons/sidebar_icon_cycling.png";
-import weightIcon from "../../assets/sidebar_icons/sidebar_icon_bodybuilding.png";
-
-/**
- * Sidebar component displaying navigation icons linking to activity routes.
- *
- * @component
- * @returns {JSX.Element} The sidebar navigation with activity icons
+            <pre class="prettyprint source linenums"><code>/**
+ * Class representing a user's performance metrics.
+ * Transforms raw performance data by translating kind labels into French and associating values.
  */
-const Sidebar = () => {
-  return (
-    &lt;aside className={styles.container}>
-      &lt;nav className={styles.nav}>
-        &lt;Link to="/yoga" className={styles.link}>
-          &lt;img src={yogaIcon} alt="Yoga" />
-        &lt;/Link>
-        &lt;Link to="/natation" className={styles.link}>
-          &lt;img src={swimmingIcon} alt="Natation" />
-        &lt;/Link>
-        &lt;Link to="/cyclisme" className={styles.link}>
-          &lt;img src={cyclingIcon} alt="Cyclisme" />
-        &lt;/Link>
-        &lt;Link to="/musculation" className={styles.link}>
-          &lt;img src={weightIcon} alt="Musculation" />
-        &lt;/Link>
-      &lt;/nav>
-      &lt;p className={styles.copyright}>Copyright, SportSee 2020&lt;/p>
-    &lt;/aside>
-  );
-};
+class UserPerformance {
+  /**
+   * Create a UserPerformance instance.
+   *
+   * @param {Object} data - Raw performance data
+   * @param {number} [data.userId=null] - The ID of the user
+   * @param {Object.&lt;string, string>} [data.kind={}] - Object mapping kind indices to kind keys (e.g., { "1": "cardio" })
+   * @param {Array&lt;Object>} [data.data=[]] - Array of performance entries
+   * @param {number} data.data[].value - Numeric performance value
+   * @param {number|string} data.data[].kind - Index of the kind (corresponds to a key in `data.kind`)
+   */
+  constructor(data = {}) {
+    const kindTranslations = {
+      cardio: "Cardio",
+      energy: "Énergie",
+      endurance: "Endurance",
+      strength: "Force",
+      speed: "Vitesse",
+      intensity: "Intensité",
+    };
 
-export default Sidebar;
+    this.userId = data.userId ?? null;
+
+    const rawKind = data.kind ?? {};
+
+    this.kind = Object.fromEntries(
+      Object.entries(rawKind).map(([key, value]) => [
+        key,
+        kindTranslations[value] || value,
+      ])
+    );
+
+    this.data = Array.isArray(data.data)
+      ? data.data.map((entry = {}) => ({
+          kindLabel: this.kind[entry.kind] ?? entry.kind ?? "?",
+          value: entry.value ?? 0,
+        }))
+      : [];
+  }
+}
+
+export default UserPerformance;
 </code></pre>
         </article>
     </section>

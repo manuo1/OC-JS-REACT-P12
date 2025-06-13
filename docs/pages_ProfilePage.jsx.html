@@ -26,7 +26,7 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { useParams, useNavigate } from "react-router-dom";
+            <pre class="prettyprint source linenums"><code>import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 //import userService from "../mocks/userService";
 import userService from "../services/userService";
@@ -39,21 +39,22 @@ import NutritionCard from "../components/NutritionCard";
 import Loader from "../components/Loader";
 
 /**
- * ProfilePage component fetches and displays user data including activity,
- * average sessions, performance, and key nutritional data.
+ * ProfilePage component.
  *
- * It handles loading state and redirects to 404 page on fetch error.
+ * Displays the user's dashboard with various data visualizations
+ * such as activity charts, session duration, performance, score,
+ * and nutrition cards. Handles data fetching and error states.
  *
  * @component
- * @returns {JSX.Element} Profile page with charts and nutrition cards
+ * @returns {JSX.Element} Rendered profile page or loader or error message
  */
 function ProfilePage() {
-  const navigate = useNavigate();
   const { id: userId } = useParams();
   const [user, setUser] = useState(null);
   const [activityData, setActivityData] = useState(null);
   const [averageSessionData, setAverageSessionData] = useState(null);
   const [performanceData, setPerformanceData] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   // Fetch user data on mount or when userId changes, redirect to 404 if fetch fails
   useEffect(() => {
@@ -70,14 +71,24 @@ function ProfilePage() {
         setActivityData(userActivity);
         setAverageSessionData(userAverageSessions);
         setPerformanceData(userPerformance);
-      } catch (error) {
-        console.error("Erreur lors du chargement des données:", error);
-        navigate("/404");
+      } catch (err) {
+        console.error(err);
+        if (err.status === 404) {
+          setErrorMessage("Utilisateur inconnu");
+        } else {
+          setErrorMessage(
+            "Une erreur est survenue lors du chargement des données."
+          );
+        }
       }
     };
 
     fetchData();
-  }, [userId, navigate]);
+  }, [userId]);
+
+  if (errorMessage) {
+    return &lt;div className={styles.error}>{errorMessage}&lt;/div>;
+  }
 
   if (!user || !activityData || !averageSessionData || !performanceData)
     return &lt;Loader />;
@@ -156,13 +167,13 @@ export default ProfilePage;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#CustomCursor">CustomCursor</a></li><li><a href="global.html#CustomTooltip">CustomTooltip</a></li><li><a href="global.html#DailyActivityBarChart">DailyActivityBarChart</a></li><li><a href="global.html#Error404">Error404</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#HomePage">HomePage</a></li><li><a href="global.html#Loader">Loader</a></li><li><a href="global.html#NutritionCard">NutritionCard</a></li><li><a href="global.html#ProfilePage">ProfilePage</a></li><li><a href="global.html#Router">Router</a></li><li><a href="global.html#Sidebar">Sidebar</a></li><li><a href="global.html#UserPerformanceRadarChart">UserPerformanceRadarChart</a></li><li><a href="global.html#UserScoreRadialChart">UserScoreRadialChart</a></li><li><a href="global.html#delay">delay</a></li><li><a href="global.html#fetchJson">fetchJson</a></li><li><a href="global.html#getMockedData">getMockedData</a></li><li><a href="global.html#mockData">mockData</a></li><li><a href="global.html#userService">userService</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="User.html">User</a></li><li><a href="UserActivity.html">UserActivity</a></li><li><a href="UserAverageSessions.html">UserAverageSessions</a></li><li><a href="UserPerformance.html">UserPerformance</a></li></ul><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#CustomCursor">CustomCursor</a></li><li><a href="global.html#CustomTooltip">CustomTooltip</a></li><li><a href="global.html#DailyActivityBarChart">DailyActivityBarChart</a></li><li><a href="global.html#Error404">Error404</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#HomePage">HomePage</a></li><li><a href="global.html#Loader">Loader</a></li><li><a href="global.html#NutritionCard">NutritionCard</a></li><li><a href="global.html#ProfilePage">ProfilePage</a></li><li><a href="global.html#Router">Router</a></li><li><a href="global.html#Sidebar">Sidebar</a></li><li><a href="global.html#UserScoreRadialChart">UserScoreRadialChart</a></li><li><a href="global.html#delay">delay</a></li><li><a href="global.html#fetchJson">fetchJson</a></li><li><a href="global.html#getMockedData">getMockedData</a></li><li><a href="global.html#userService">userService</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Fri Jun 13 2025 12:36:39 GMT+0200 (heure d’été d’Europe centrale)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Fri Jun 13 2025 18:09:12 GMT+0200 (heure d’été d’Europe centrale)
 </footer>
 
 <script> prettyPrint(); </script>

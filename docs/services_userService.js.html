@@ -27,65 +27,55 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import { fetchJson } from "./fetchJson";
+import User from "../models/User";
+import UserActivity from "../models/UserActivity";
+import UserAverageSessions from "../models/UserAverageSessions";
+import UserPerformance from "../models/UserPerformance";
 
 const BASE_URL = "http://localhost:3000/user";
 
 /**
- * Service providing user-related API calls.
+ * Service to fetch and instantiate user-related data models from API.
  */
 const userService = {
   /**
-   * Fetch main user data by userId.
-   * Normalizes the score field to use todayScore if available.
-   *
-   * @async
-   * @param {number|string} userId - The ID of the user to fetch data for.
-   * @returns {Promise&lt;Object>} User main data object including normalized score.
+   * Fetch main user data by ID.
+   * @param {number|string} userId - The user ID.
+   * @returns {Promise&lt;User>} Resolves to a User instance.
    */
   getUserMainData: async (userId) => {
     const json = await fetchJson(`${BASE_URL}/${userId}`);
-    const data = json.data;
-
-    return {
-      ...data,
-      score: data.todayScore ?? data.score,
-    };
+    return new User(json.data);
   },
 
   /**
-   * Fetch user activity data by userId.
-   *
-   * @async
-   * @param {number|string} userId - The ID of the user.
-   * @returns {Promise&lt;Object>} User activity data.
+   * Fetch user activity data by ID.
+   * @param {number|string} userId - The user ID.
+   * @returns {Promise&lt;UserActivity>} Resolves to a UserActivity instance.
    */
   getUserActivity: async (userId) => {
     const json = await fetchJson(`${BASE_URL}/${userId}/activity`);
-    return json.data;
+    return new UserActivity(json.data);
   },
 
   /**
-   * Fetch user average sessions data by userId.
-   *
-   * @async
-   * @param {number|string} userId - The ID of the user.
-   * @returns {Promise&lt;Object>} User average sessions data.
+   * Fetch user average sessions data by ID.
+   * @param {number|string} userId - The user ID.
+   * @returns {Promise&lt;UserAverageSessions>} Resolves to a UserAverageSessions instance.
    */
   getUserAverageSessions: async (userId) => {
     const json = await fetchJson(`${BASE_URL}/${userId}/average-sessions`);
-    return json.data;
+    return new UserAverageSessions(json.data);
   },
 
   /**
-   * Fetch user performance data by userId.
-   *
-   * @async
-   * @param {number|string} userId - The ID of the user.
-   * @returns {Promise&lt;Object>} User performance data.
+   * Fetch user performance data by ID.
+   * @param {number|string} userId - The user ID.
+   * @returns {Promise&lt;UserPerformance>} Resolves to a UserPerformance instance.
    */
   getUserPerformance: async (userId) => {
     const json = await fetchJson(`${BASE_URL}/${userId}/performance`);
-    return json.data;
+    return new UserPerformance(json.data);
   },
 };
 
@@ -100,13 +90,13 @@ export default userService;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#CustomCursor">CustomCursor</a></li><li><a href="global.html#CustomTooltip">CustomTooltip</a></li><li><a href="global.html#DailyActivityBarChart">DailyActivityBarChart</a></li><li><a href="global.html#Error404">Error404</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#HomePage">HomePage</a></li><li><a href="global.html#Loader">Loader</a></li><li><a href="global.html#NutritionCard">NutritionCard</a></li><li><a href="global.html#ProfilePage">ProfilePage</a></li><li><a href="global.html#Router">Router</a></li><li><a href="global.html#Sidebar">Sidebar</a></li><li><a href="global.html#UserPerformanceRadarChart">UserPerformanceRadarChart</a></li><li><a href="global.html#UserScoreRadialChart">UserScoreRadialChart</a></li><li><a href="global.html#delay">delay</a></li><li><a href="global.html#fetchJson">fetchJson</a></li><li><a href="global.html#getMockedData">getMockedData</a></li><li><a href="global.html#mockData">mockData</a></li><li><a href="global.html#userService">userService</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="User.html">User</a></li><li><a href="UserActivity.html">UserActivity</a></li><li><a href="UserAverageSessions.html">UserAverageSessions</a></li><li><a href="UserPerformance.html">UserPerformance</a></li></ul><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#CustomCursor">CustomCursor</a></li><li><a href="global.html#CustomTooltip">CustomTooltip</a></li><li><a href="global.html#DailyActivityBarChart">DailyActivityBarChart</a></li><li><a href="global.html#Error404">Error404</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#HomePage">HomePage</a></li><li><a href="global.html#Loader">Loader</a></li><li><a href="global.html#NutritionCard">NutritionCard</a></li><li><a href="global.html#ProfilePage">ProfilePage</a></li><li><a href="global.html#Router">Router</a></li><li><a href="global.html#Sidebar">Sidebar</a></li><li><a href="global.html#UserScoreRadialChart">UserScoreRadialChart</a></li><li><a href="global.html#delay">delay</a></li><li><a href="global.html#fetchJson">fetchJson</a></li><li><a href="global.html#getMockedData">getMockedData</a></li><li><a href="global.html#userService">userService</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Fri Jun 13 2025 12:36:39 GMT+0200 (heure d’été d’Europe centrale)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Fri Jun 13 2025 18:09:12 GMT+0200 (heure d’été d’Europe centrale)
 </footer>
 
 <script> prettyPrint(); </script>

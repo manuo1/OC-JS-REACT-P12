@@ -1,8 +1,13 @@
 import { mockData } from "./mockData";
+// import { mockData } from "./mockData";
+import User from "../models/User";
+import UserActivity from "../models/UserActivity";
+import UserAverageSessions from "../models/UserAverageSessions";
+import UserPerformance from "../models/UserPerformance";
 
 /**
- * Helper to simulate network delay.
- * @param {number} ms Milliseconds to wait
+ * Simulate a delay to mimic async calls (e.g., network latency).
+ * @param {number} ms - Delay in milliseconds.
  * @returns {Promise<void>}
  */
 function delay(ms) {
@@ -10,12 +15,12 @@ function delay(ms) {
 }
 
 /**
- * Retrieve mocked data section for a user by ID.
- * Throws if no data found.
- *
- * @param {string} key - Section key in mockData (e.g. "users", "activities")
- * @param {number} userId - User ID
- * @returns {object} The user-specific data from the mock
+ * Retrieve mock data from the dataset by section and userId.
+ * Throws an error if data is missing.
+ * @param {string} key - The data section key (e.g., "users").
+ * @param {number|string} userId - The user ID.
+ * @returns {object} The corresponding mock data.
+ * @throws {Error} If no data found for given userId in the section.
  */
 function getMockedData(key, userId) {
   const sectionData = mockData[key];
@@ -28,51 +33,49 @@ function getMockedData(key, userId) {
   return userData;
 }
 
+/**
+ * Mock service to fetch user data and instantiate model classes.
+ */
 const userService = {
   /**
-   * Get main user data including key statistics.
-   * Resolves after a short delay to simulate API response time.
-   *
-   * @param {number} userId
-   * @returns {Promise<object>} User data with `score` normalized (todayScore or score)
+   * Get main user data by ID.
+   * @param {number|string} userId - The user ID.
+   * @returns {Promise<User>} Resolves with a User instance.
    */
   getUserMainData: async (userId) => {
     await delay(500);
     const data = getMockedData("users", userId);
-    return {
-      ...data,
-      score: data.todayScore ?? data.score,
-    };
+    return new User(data);
   },
 
   /**
-   * Get user's daily activity data (sessions).
-   *
-   * @param {number} userId
-   * @returns {Promise<object>} Activity data object with sessions array
+   * Get user activity data by ID.
+   * @param {number|string} userId - The user ID.
+   * @returns {Promise<UserActivity>} Resolves with a UserActivity instance.
    */
   getUserActivity: async (userId) => {
-    return getMockedData("activities", userId);
+    const data = getMockedData("activities", userId);
+    return new UserActivity(data);
   },
 
   /**
-   * Get user's average session lengths per day.
-   *
-   * @param {number} userId
-   * @returns {Promise<object>} Average sessions data
+   * Get user average sessions data by ID.
+   * @param {number|string} userId - The user ID.
+   * @returns {Promise<UserAverageSessions>} Resolves with a UserAverageSessions instance.
    */
   getUserAverageSessions: async (userId) => {
-    return getMockedData("averageSessions", userId);
+    const data = getMockedData("averageSessions", userId);
+    return new UserAverageSessions(data);
   },
 
   /**
-   * Get user's performance data.
-   *
-   * @param {number} userId
-   * @returns {Promise<object>} Performance data including kind mapping and values
+   * Get user performance data by ID.
+   * @param {number|string} userId - The user ID.
+   * @returns {Promise<UserPerformance>} Resolves with a UserPerformance instance.
    */
   getUserPerformance: async (userId) => {
-    return getMockedData("performances", userId);
+    const data = getMockedData("performances", userId);
+    return new UserPerformance(data);
   },
 };
 
