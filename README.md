@@ -51,19 +51,22 @@ Seules ces routes fonctionnent actuellement pour simuler différents utilisateur
 
 ```
 .
+├── docs
 ├── project-meta
 ├── README.md
 └── sportsee
     ├── backend
+    │   ├── package.json
     │   └── SportSee
-    │       ├── app
-    │       │   ├── data.js
-    │       │   ├── index.js
-    │       │   ├── middleware.js
-    │       │   ├── models.js
-    │       │   └── routes.js
+    │       └── app
+    │           ├── data.js
+    │           ├── index.js
+    │           ├── middleware.js
+    │           ├── models.js
+    │           └── routes.js
     └── frontend
         └── sportsee
+            ├── index.html
             ├── public
             │   └── favicon.png
             └── src
@@ -73,14 +76,50 @@ Seules ces routes fonctionnent actuellement pour simuler différents utilisateur
                 │   ├── sidebar_icons
                 │   └── sportsee_logo.png
                 ├── components
+                │   ├── AverageSessionLineChart.jsx
+                │   ├── AverageSessionLineChart.module.scss
+                │   ├── DailyActivityBarChart.jsx
+                │   ├── DailyActivityBarChart.module.scss
+                │   ├── Loader.jsx
+                │   ├── Loader.module.scss
+                │   ├── NutritionCard.jsx
+                │   ├── NutritionCard.module.scss
+                │   ├── UserPerformanceRadarChart.jsx
+                │   ├── UserPerformanceRadarChart.module.scss
+                │   ├── UserScoreRadialChart.jsx
+                │   └── UserScoreRadialChart.module.scss
                 ├── main.jsx
                 ├── mocks
+                │   ├── mockData.js
+                │   └── userService.js
+                ├── models
+                │   ├── UserActivity.js
+                │   ├── UserAverageSessions.js
+                │   ├── User.js
+                │   └── UserPerformance.js
                 ├── pages
+                │   ├── common
+                │   │   ├── Header.jsx
+                │   │   ├── Header.module.scss
+                │   │   ├── Layout.jsx
+                │   │   ├── Layout.module.scss
+                │   │   ├── Sidebar.jsx
+                │   │   └── Sidebar.module.scss
+                │   ├── Error404.jsx
+                │   ├── Error404.module.scss
+                │   ├── HomePage.jsx
+                │   ├── HomePage.module.scss
+                │   ├── ProfilePage.jsx
+                │   └── ProfilePage.module.scss
                 ├── router
+                │   └── Router.jsx
                 ├── services
-                ├── styles
-                └── utils
-
+                │   ├── fetchJson.js
+                │   └── userService.js
+                └── styles
+                    ├── main.scss
+                    └── variables.scss
+            
 
 ```
 
